@@ -1,0 +1,9 @@
+calculadora\model\operacione\reales\OperacionAlgebraica.class
+calculadora\model\NewClass.class
+calculadora\Calculadora.class
+calculadora\model\operacion\convercion\Convertir.class
+calculadora\model\operacion\matrix\OperacionMatrix.class
+calculadora\vista\CalculadoraVista.class
+calculadora\controlador\CalculadoraControlador.class
+calculadora\model\complex\OperacionCompleja.class
+calculadora\vista\CalculadoraVista$1.class
