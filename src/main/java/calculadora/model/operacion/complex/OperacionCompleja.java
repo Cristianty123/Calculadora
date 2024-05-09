@@ -1,4 +1,4 @@
-package calculadora.model.complex;
+package calculadora.model.operacion.complex;
 
 public class OperacionCompleja {
     

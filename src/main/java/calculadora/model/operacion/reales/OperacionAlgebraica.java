@@ -4,7 +4,6 @@ package calculadora.model.operacion.reales;
 
 public class OperacionAlgebraica {
 
-    
     // Método para calcular la suma de dos números
     public double suma(double numero1, double numero2) {
         return numero1 + numero2;
