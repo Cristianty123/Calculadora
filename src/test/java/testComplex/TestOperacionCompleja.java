@@ -1,18 +1,15 @@
-
 package testComplex;
 
-
-
-import org.junit.jupiter.api.Test;
-
-// clase de prueba OperacionCompleja
+import org.junit.jupiter.api.BeforeEach;
 
 public class TestOperacionCompleja {
     
-@Test
-
-public void testOperacion(){
-    
+@BeforeEach
+// metodo para inicializar los datos de cada prueba
+public void beforeEach(){
+    //Configurar datos de prueba
 }
+
+//Pruebas unitarias de la clase OperacionCompleja
 
 }
