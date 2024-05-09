@@ -1,5 +1,5 @@
 
-package calculadora.model.operacione.reales;
+package calculadora.model.operacion.reales;
 
 
 public class OperacionAlgebraica {
@@ -7,7 +7,7 @@ public class OperacionAlgebraica {
     
     // Método para calcular la suma de dos números
     public double suma(double numero1, double numero2) {
-        throw new UnsupportedOperationException("No implementada");
+        return numero1 + numero2;
     }
 
     // Método para calcular la resta de dos números

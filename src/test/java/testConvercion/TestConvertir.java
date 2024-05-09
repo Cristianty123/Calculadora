@@ -1,16 +1,17 @@
 package testConvercion;
 
 import org.junit.jupiter.api.BeforeEach;
-
+// Clase de pruebas para la clase Convertir
 public class TestConvertir {
     
 @BeforeEach
-// metodo para inicializar los datos de cada prueba
-public void beforeEach(){
-    //Configurar datos de prueba
+// Datos de prueba con los que se probara cada metodo 
+public void setUp(){
+    
 }
 
-//Pruebas unitarias de la clase Convertir
+// Metodos de prueba de la clase Convertir
+
 
     
 }
