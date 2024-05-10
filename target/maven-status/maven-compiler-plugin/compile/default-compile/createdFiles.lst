@@ -1,9 +1,13 @@
-calculadora\model\operacione\reales\OperacionAlgebraica.class
-calculadora\model\NewClass.class
+calculadora\model\operacion\reales\funcion\FuncionTrigonometrica$Modo.class
+calculadora\model\operacion\complex\OperacionCompleja.class
 calculadora\Calculadora.class
-calculadora\model\operacion\convercion\Convertir.class
 calculadora\model\operacion\matrix\OperacionMatrix.class
+calculadora\model\operacion\reales\funcion\EncontrarCorte.class
+calculadora\model\operacion\reales\funcion\FuncionTrigonometrica.class
+calculadora\model\operacion\convercion\Convertir.class
+calculadora\model\operacion\reales\funcion\Calculo.class
+calculadora\model\operacion\reales\OperacionAlgebraica.class
 calculadora\vista\CalculadoraVista.class
 calculadora\controlador\CalculadoraControlador.class
-calculadora\model\complex\OperacionCompleja.class
+calculadora\model\CalculadoraModel.class
 calculadora\vista\CalculadoraVista$1.class
