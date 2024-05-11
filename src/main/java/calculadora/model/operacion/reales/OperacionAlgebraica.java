@@ -5,52 +5,55 @@ package calculadora.model.operacion.reales;
 public class OperacionAlgebraica {
 
     // Método para calcular la suma de dos números
-    public double suma(double numero1, double numero2) {
+    public static double suma(double numero1, double numero2) {
         return numero1 + numero2;
     }
 
     // Método para calcular la resta de dos números
-    public double resta(double numero1, double numero2) {
-        throw new UnsupportedOperationException("No implementada");
+    public static double resta(double numero1, double numero2) {
+        return numero1 - numero2;
     }
 
     // Método para calcular la multiplicación de dos números
-    public double multiplicacion(double numero1, double numero2) {
-        throw new UnsupportedOperationException("No implementada");
+    public static double multiplicacion(double numero1, double numero2) {
+        return numero1 * numero2;
     }
 
     // Método para calcular la división de dos números
-    public double division(double dividendo, double divisor) {
-        throw new UnsupportedOperationException("No implementada");
+    public static double division(double dividendo, double divisor) {
+        if (divisor == 0) {
+            throw new ArithmeticException("No se puede dividir por cero");
+        }
+        return dividendo / divisor;
     }
 
     // Método para calcular el logaritmo de un número en base arbitraria
-    public double logaritmo(double numero, double base) {
-        throw new UnsupportedOperationException("No implementada");
+    public static double logaritmo(double numero, double base) {
+        return Math.log(numero) / Math.log(base);
     }
 
     // Método para calcular el logaritmo natural de un número
-    public double logaritmoNatural(double numero) {
-        throw new UnsupportedOperationException("No implementada");
+    public static double logaritmoNatural(double numero) {
+        return Math.log(numero);
     }
 
     // Método para calcular el logaritmo en base 10 de un número
-    public double logaritmoBase10(double numero) {
-        throw new UnsupportedOperationException("No implementada");
+    public static double logaritmoBase10(double numero) {
+        return Math.log10(numero);
     }
+
     // Método para calcular la potencia de un número
-    public double potencia(double numero, double exponente) {
-        throw new UnsupportedOperationException("No implementada");
+    public static double potencia(double numero, double exponente) {
+        return Math.pow(numero, exponente);
     }
 
     // Método para calcular la raíz cuadrada de un número
-    public double raizCuadrada(double numero) {
-        throw new UnsupportedOperationException("No implementada");
+    public static double raizCuadrada(double numero) {
+        return Math.sqrt(numero);
     }
 
     // Método para calcular cualquier raíz de un número
-    public double raiz(double numero, double indice) {
-        throw new UnsupportedOperationException("No implementada");
+    public static double raiz(double numero, double indice) {
+        return Math.pow(numero, 1.0 / indice);
     }
-
 }
