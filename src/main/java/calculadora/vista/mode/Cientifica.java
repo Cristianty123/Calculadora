@@ -1,4 +1,4 @@
-package calculadora.vista.form;
+package calculadora.vista.mode;
 
 public class Cientifica extends javax.swing.JPanel {
 
@@ -13,7 +13,6 @@ public class Cientifica extends javax.swing.JPanel {
         operaciones = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         historial = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
         boton0 = new javax.swing.JButton();
         boton1 = new javax.swing.JButton();
         boton2 = new javax.swing.JButton();
@@ -59,10 +58,12 @@ public class Cientifica extends javax.swing.JPanel {
         botonVariableY = new javax.swing.JButton();
         botonVariableZ = new javax.swing.JButton();
         botonPorcentaje = new javax.swing.JButton();
+        jLabelHistorial = new javax.swing.JLabel();
 
         operaciones.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         operaciones.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         operaciones.setText("0");
+        operaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         operaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 operacionesActionPerformed(evt);
@@ -75,10 +76,6 @@ public class Cientifica extends javax.swing.JPanel {
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(historial);
-
-        jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Historial");
 
         boton0.setText("0");
         boton0.addActionListener(new java.awt.event.ActionListener() {
@@ -397,6 +394,10 @@ public class Cientifica extends javax.swing.JPanel {
             }
         });
 
+        jLabelHistorial.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabelHistorial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelHistorial.setText("Historial");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -466,23 +467,23 @@ public class Cientifica extends javax.swing.JPanel {
                             .addComponent(botonModoDegORad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(operaciones))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(jLabelHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelHistorial)
+                        .addGap(10, 10, 10)
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(operaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 23, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botonModoDegORad, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonVariableX, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -781,7 +782,7 @@ public class Cientifica extends javax.swing.JPanel {
     private javax.swing.JButton botonVariableY;
     private javax.swing.JButton botonVariableZ;
     private javax.swing.JList<String> historial;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelHistorial;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField operaciones;
     // End of variables declaration//GEN-END:variables
