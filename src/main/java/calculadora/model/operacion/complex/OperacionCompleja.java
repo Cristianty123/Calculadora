@@ -4,6 +4,7 @@ public class OperacionCompleja {
     
     // Método para realizar la suma de dos números complejos
     public String suma(String n1, String n2) {
+        int x=0;
         throw new UnsupportedOperationException("No implementada");
     }
 
