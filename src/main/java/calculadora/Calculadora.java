@@ -1,5 +1,7 @@
 package calculadora;
 
+import calculadora.controlador.CalculadoraControlador;
+import calculadora.model.CalculadoraModel;
 import calculadora.vista.CalculadoraVista;
 
 public class Calculadora {
@@ -29,10 +31,13 @@ public class Calculadora {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CalculadoraVista().setVisible(true);
-            }
-        });
+        CalculadoraModel model = new CalculadoraModel();
+        CalculadoraVista vista = new CalculadoraVista();
+        CalculadoraControlador controlador = new CalculadoraControlador(vista, model);
+        
+        vista.setControlador(controlador);
+
+        // Iniciar la aplicación
+        controlador.start();
     }
 }

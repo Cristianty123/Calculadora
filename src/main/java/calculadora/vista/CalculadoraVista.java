@@ -1,5 +1,6 @@
 package calculadora.vista;
 
+import calculadora.controlador.CalculadoraControlador;
 import calculadora.vista.mode.CMPLX;
 import calculadora.vista.mode.Cientifica;
 import calculadora.vista.mode.Convercion;
@@ -11,14 +12,26 @@ import javax.swing.JPanel;
 public class CalculadoraVista extends javax.swing.JFrame {
 
     private JPanel selectedPanel = null;
+    private Cientifica cientifica;
+     private CalculadoraControlador controlador;
     
     public CalculadoraVista() {
         initComponents();
-        
-        Cientifica cientifica = new Cientifica();
-        setForm(cientifica);
     }
     
+    public void iniciar() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                setVisible(true);
+            }
+        });
+    }
+   
+    public void setControlador(CalculadoraControlador controlador) {
+        this.controlador = controlador;
+        this.cientifica = new Cientifica(controlador);
+        setForm(cientifica);
+    }
     private void setForm(JComponent com) {
         mainPanel.removeAll();
         mainPanel.add(com);
@@ -397,7 +410,6 @@ public class CalculadoraVista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanelCientificaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCientificaMouseClicked
-        Cientifica cientifica = new Cientifica();
         setForm(cientifica);
         setSelectedPanel(jPanelCientifica); 
     }//GEN-LAST:event_jPanelCientificaMouseClicked

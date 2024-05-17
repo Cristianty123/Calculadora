@@ -27,13 +27,11 @@ public class OperacionAlgebraica {
         return dividendo / divisor;
     }
 
-    // Método para calcular el logaritmo de un número en base arbitraria
-    public static double logaritmo(double numero, double base) {
-        return Math.log(numero) / Math.log(base);
-    }
-
     // Método para calcular el logaritmo natural de un número
     public static double logaritmoNatural(double numero) {
+        if (numero <=0) {
+            throw new ArithmeticException("Error matematico");
+        }
         return Math.log(numero);
     }
 

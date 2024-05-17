@@ -2,13 +2,19 @@ package calculadora.vista.mode;
 
 import calculadora.controlador.CalculadoraControlador;
 import calculadora.model.operacion.reales.funcion.FuncionTrigonometrica.Modo;
+import javax.swing.DefaultListModel;
 
 public class Cientifica extends javax.swing.JPanel {
     
-    private CalculadoraControlador controlador = new CalculadoraControlador();
+    private CalculadoraControlador controlador;
+    private DefaultListModel<String> historialModel = new DefaultListModel();
+    private boolean igual = false;
 
-    public Cientifica() {
+    public Cientifica(CalculadoraControlador controlador) {
+        this.controlador = controlador;
         initComponents();
+        historial.setModel(historialModel);
+        historialModel.addElement("No hay historial todavía");
     }
     private String eliminarCerosDespuesComa(String texto) {
         int indexComa = texto.indexOf(",");
@@ -97,11 +103,6 @@ public class Cientifica extends javax.swing.JPanel {
         });
 
         historial.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        historial.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "No hay historial todavia", " ", " ", " " };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(historial);
 
         boton0.setText("0");
@@ -632,7 +633,12 @@ public class Cientifica extends javax.swing.JPanel {
     private void boton0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton0ActionPerformed
         String testoOperaciones = operaciones.getText();
         if(testoOperaciones.length() != 40){
-            if (!testoOperaciones.equals("0")) {
+            if (igual == true){
+                operaciones.setText("0");
+                vistaOperaciones.setText("");
+                igual = false;
+            }
+            else if (!testoOperaciones.equals("0")) {
                 operaciones.setText(testoOperaciones + "0");
             }
         }
@@ -643,6 +649,11 @@ public class Cientifica extends javax.swing.JPanel {
         if(testoOperaciones.length() != 40){
             if(testoOperaciones.equals("0")){
                 operaciones.setText("1");
+                
+            }else if(igual == true){
+                operaciones.setText("1");
+                vistaOperaciones.setText("");
+                igual = false;
             }else{
                 operaciones.setText(testoOperaciones + "1");
             }
@@ -654,6 +665,11 @@ public class Cientifica extends javax.swing.JPanel {
         if(testoOperaciones.length() != 40){
             if(testoOperaciones.equals("0")){
                 operaciones.setText("2");
+                
+            }else if(igual == true){
+                operaciones.setText("2");
+                vistaOperaciones.setText("");
+                igual = false;
             }else{
                 operaciones.setText(testoOperaciones + "2");
             }
@@ -665,6 +681,11 @@ public class Cientifica extends javax.swing.JPanel {
         if(testoOperaciones.length() != 40){
             if(testoOperaciones.equals("0")){
                 operaciones.setText("3");
+                
+            }else if(igual == true){
+                operaciones.setText("3");
+                vistaOperaciones.setText("");
+                igual = false;
             }else{
                 operaciones.setText(testoOperaciones + "3");
             }
@@ -678,21 +699,39 @@ public class Cientifica extends javax.swing.JPanel {
     private void botonComaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComaActionPerformed
         String testoOperaciones = operaciones.getText();
         if(testoOperaciones.length() != 40){
-            if(!testoOperaciones.contains(",")){
-                operaciones.setText(testoOperaciones + ",");
+            if(igual == true){
+                operaciones.setText("0" + ",");
+                vistaOperaciones.setText("");
+                igual = false;
+            }else if(!testoOperaciones.contains(",")){
+               operaciones.setText(testoOperaciones + ",");
             }
-        }
+        }  
     }//GEN-LAST:event_botonComaActionPerformed
 
     private void botonIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIgualActionPerformed
-        // TODO add your handling code here:
+        String textoVistaOperaciones = vistaOperaciones.getText();
+        String textoOperaciones = operaciones.getText();
+        
+        String operacion = textoVistaOperaciones + textoOperaciones;
+        String resultado = String.valueOf(controlador.calcularOperacion(operacion));
+        
+        operaciones.setText(resultado);
+        vistaOperaciones.setText(operacion + " = " + resultado);
+        
+        if (historialModel.getSize() == 1 && historialModel.getElementAt(0).equals("No hay historial todavía")) {
+            historialModel.removeAllElements();
+        }
+        historialModel.addElement(operacion + " = " + resultado);
+        
+        igual = true;
     }//GEN-LAST:event_botonIgualActionPerformed
 
     private void botonSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSumarActionPerformed
         String textoOperaciones = operaciones.getText();
         String textoVistaOperaciones = vistaOperaciones.getText();
         
-        if(!textoOperaciones.equals("0")){
+        if(!textoOperaciones.equals("0") && igual == false){
            // Eliminar los ceros después de la coma si existen
            textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
            vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " + ");
@@ -706,6 +745,11 @@ public class Cientifica extends javax.swing.JPanel {
         if(testoOperaciones.length() != 40){
             if(testoOperaciones.equals("0")){
                 operaciones.setText("4");
+                
+            }else if(igual == true){
+                operaciones.setText("4");
+                vistaOperaciones.setText("");
+                igual = false;
             }else{
                 operaciones.setText(testoOperaciones + "4");
             }
@@ -717,6 +761,11 @@ public class Cientifica extends javax.swing.JPanel {
         if(testoOperaciones.length() != 40){
             if(testoOperaciones.equals("0")){
                 operaciones.setText("5");
+                
+            }else if(igual == true){
+                operaciones.setText("5");
+                vistaOperaciones.setText("");
+                igual = false;
             }else{
                 operaciones.setText(testoOperaciones + "5");
             }
@@ -728,6 +777,11 @@ public class Cientifica extends javax.swing.JPanel {
         if(testoOperaciones.length() != 40){
             if(testoOperaciones.equals("0")){
                 operaciones.setText("6");
+                
+            }else if(igual == true){
+                operaciones.setText("6");
+                vistaOperaciones.setText("");
+                igual = false;
             }else{
                 operaciones.setText(testoOperaciones + "6");
             }
@@ -739,6 +793,11 @@ public class Cientifica extends javax.swing.JPanel {
         if(testoOperaciones.length() != 40){
             if(testoOperaciones.equals("0")){
                 operaciones.setText("7");
+                
+            }else if(igual == true){
+                operaciones.setText("7");
+                vistaOperaciones.setText("");
+                igual = false;
             }else{
                 operaciones.setText(testoOperaciones + "7");
             }
@@ -750,6 +809,11 @@ public class Cientifica extends javax.swing.JPanel {
         if(testoOperaciones.length() != 40){
             if(testoOperaciones.equals("0")){
                 operaciones.setText("8");
+                
+            }else if(igual == true){
+                operaciones.setText("8");
+                vistaOperaciones.setText("");
+                igual = false;
             }else{
                 operaciones.setText(testoOperaciones + "8");
             }
@@ -761,6 +825,11 @@ public class Cientifica extends javax.swing.JPanel {
         if(testoOperaciones.length() != 40){
             if(testoOperaciones.equals("0")){
                 operaciones.setText("9");
+                
+            }else if(igual == true){
+                operaciones.setText("9");
+                vistaOperaciones.setText("");
+                igual = false;
             }else{
                 operaciones.setText(testoOperaciones + "9");
             }
@@ -784,7 +853,7 @@ public class Cientifica extends javax.swing.JPanel {
         String textoOperaciones = operaciones.getText();
         String textoVistaOperaciones = vistaOperaciones.getText();
         
-        if(!textoOperaciones.equals("0")){
+        if(!textoOperaciones.equals("0")&& igual == false){
            // Eliminar los ceros después de la coma si existen
            textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
            vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " ÷ ");
@@ -797,7 +866,7 @@ public class Cientifica extends javax.swing.JPanel {
         String textoOperaciones = operaciones.getText();
         String textoVistaOperaciones = vistaOperaciones.getText();
         
-        if(!textoOperaciones.equals("0")){
+        if(!textoOperaciones.equals("0")&& igual == false){
            // Eliminar los ceros después de la coma si existen
            textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
            vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " - ");

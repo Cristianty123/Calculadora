@@ -39,12 +39,6 @@ public void testSuma(){
             OperacionAlgebraica.division(5.0, 0.0);
         });
     }
-    @Test
-    public void testLogaritmo() {
-        assertEquals(2.0, OperacionAlgebraica.logaritmo(100.0, 10.0));
-        assertEquals(2.9, OperacionAlgebraica.logaritmo(1000.0, 10.0), 0.1);
-        
-    }
     
     @Test
     public void testLogaritmoNatural() {

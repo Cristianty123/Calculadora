@@ -70,6 +70,9 @@ public class FuncionTrigonometrica {
     // Método para calcular el arcoseno
     public double arcSeno(double valor) {
         // Se calcula el arcoseno
+        if(valor < -1 || valor > 1){
+            throw new ArithmeticException("Error Matematico");
+        }
         double arcSeno = Math.asin(valor);
         // Si el modo está en grados se pasa el ángulo dado a grados
         if (modo == Modo.DEG) {
@@ -81,6 +84,9 @@ public class FuncionTrigonometrica {
     // Método para calcular el arcocoseno de un valor
     public double arcCoseno(double valor) {
         // Se calcula el arcocoseno
+        if(valor < -1 || valor > 1){
+            throw new ArithmeticException("Error Matematico");
+        }
         double arcCoseno = Math.acos(valor);
         // Si el modo está en grados se pasa el ángulo dado a grados
         if (modo == Modo.DEG) {
