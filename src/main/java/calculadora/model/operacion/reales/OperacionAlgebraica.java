@@ -37,6 +37,9 @@ public class OperacionAlgebraica {
 
     // Método para calcular el logaritmo en base 10 de un número
     public static double logaritmoBase10(double numero) {
+        if (numero <=0) {
+            throw new ArithmeticException("Error matematico");
+        }
         return Math.log10(numero);
     }
 
