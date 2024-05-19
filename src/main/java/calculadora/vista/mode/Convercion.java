@@ -1,21 +1,84 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package calculadora.vista.mode;
 
-/**
- *
- * @author USUARIO
- */
+import javax.swing.JPanel;
+
+
 public class Convercion extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Convercion
-     */
+    private JPanel selectedPanel = null;
     public Convercion() {
         initComponents();
+        setSelectedPanel(jPanelDEC);
     }
+    
+    private void setSelectedPanel(JPanel panel) {
+    if (selectedPanel != null) {
+        selectedPanel.setBackground(new java.awt.Color(255, 255, 255));
+    }
+    selectedPanel = panel;
+    selectedPanel.setBackground(new java.awt.Color(204, 204, 204));
+    if(selectedPanel.equals(jPanelHEX)){
+        botonA.setEnabled(true);
+        botonB.setEnabled(true);
+        botonC.setEnabled(true);
+        botonD.setEnabled(true);
+        botonE.setEnabled(true);
+        botonF.setEnabled(true);
+        boton2.setEnabled(true);
+        boton3.setEnabled(true);
+        boton4.setEnabled(true);
+        boton5.setEnabled(true);
+        boton6.setEnabled(true);
+        boton7.setEnabled(true);
+        boton8.setEnabled(true);
+        boton9.setEnabled(true);
+     }else if(selectedPanel.equals(jPanelDEC)){
+        botonA.setEnabled(false);
+        botonB.setEnabled(false);
+        botonC.setEnabled(false);
+        botonD.setEnabled(false);
+        botonE.setEnabled(false);
+        botonF.setEnabled(false);
+        boton2.setEnabled(true);
+        boton3.setEnabled(true);
+        boton4.setEnabled(true);
+        boton5.setEnabled(true);
+        boton6.setEnabled(true);
+        boton7.setEnabled(true);
+        boton8.setEnabled(true);
+        boton9.setEnabled(true);
+    }else if(selectedPanel.equals(jPanelOCT)){
+        botonA.setEnabled(false);
+        botonB.setEnabled(false);
+        botonC.setEnabled(false);
+        botonD.setEnabled(false);
+        botonE.setEnabled(false);
+        botonF.setEnabled(false);
+        boton2.setEnabled(true);
+        boton3.setEnabled(true);
+        boton4.setEnabled(true);
+        boton5.setEnabled(true);
+        boton6.setEnabled(true);
+        boton7.setEnabled(true);
+        boton8.setEnabled(false);
+        boton9.setEnabled(false);
+    }else if(selectedPanel.equals(jPanelBIN)){
+        botonA.setEnabled(false);
+        botonB.setEnabled(false);
+        botonC.setEnabled(false);
+        botonD.setEnabled(false);
+        botonE.setEnabled(false);
+        botonF.setEnabled(false);
+        boton2.setEnabled(false);
+        boton3.setEnabled(false);
+        boton4.setEnabled(false);
+        boton5.setEnabled(false);
+        boton6.setEnabled(false);
+        boton7.setEnabled(false);
+        boton8.setEnabled(false);
+        boton9.setEnabled(false);
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,33 +89,501 @@ public class Convercion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        botonF = new javax.swing.JButton();
+        botonCambiarNegativoPositivo = new javax.swing.JButton();
+        boton0 = new javax.swing.JButton();
+        botonComa = new javax.swing.JButton();
+        botonIgual = new javax.swing.JButton();
+        boton2 = new javax.swing.JButton();
+        boton3 = new javax.swing.JButton();
+        botonSumar = new javax.swing.JButton();
+        botonE = new javax.swing.JButton();
+        boton1 = new javax.swing.JButton();
+        boton5 = new javax.swing.JButton();
+        boton6 = new javax.swing.JButton();
+        botonDividir = new javax.swing.JButton();
+        botonD = new javax.swing.JButton();
+        boton4 = new javax.swing.JButton();
+        boton8 = new javax.swing.JButton();
+        boton9 = new javax.swing.JButton();
+        botonMultiplicar = new javax.swing.JButton();
+        botonC = new javax.swing.JButton();
+        boton7 = new javax.swing.JButton();
+        botonCerrarParentesis = new javax.swing.JButton();
+        botonMod = new javax.swing.JButton();
+        botonRestar = new javax.swing.JButton();
+        botonB = new javax.swing.JButton();
+        botonAbrirParentesis = new javax.swing.JButton();
+        botonEliminarTodo = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
+        botonA = new javax.swing.JButton();
+        vistaOperaciones = new javax.swing.JTextField();
+        operaciones = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jPanelHEX = new javax.swing.JPanel();
+        jLabelHEX = new javax.swing.JLabel();
+        jPanelDEC = new javax.swing.JPanel();
+        jLabelDEC = new javax.swing.JLabel();
+        jPanelOCT = new javax.swing.JPanel();
+        jLabelOCT = new javax.swing.JLabel();
+        jPanelBIN = new javax.swing.JPanel();
+        jLabelBIN = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(106, 106, 106));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("VistaConvercion");
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        botonF.setText("F");
+        add(botonF, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 452, 138, 38));
+
+        botonCambiarNegativoPositivo.setText("+/-");
+        add(botonCambiarNegativoPositivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 452, 138, 38));
+
+        boton0.setText("0");
+        boton0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton0ActionPerformed(evt);
+            }
+        });
+        add(boton0, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 452, 138, 38));
+
+        botonComa.setText(",");
+        botonComa.setEnabled(false);
+        add(botonComa, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 452, 138, 38));
+
+        botonIgual.setBackground(new java.awt.Color(0, 90, 158));
+        botonIgual.setText("=");
+        add(botonIgual, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 452, 138, 38));
+
+        boton2.setText("2");
+        boton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton2ActionPerformed(evt);
+            }
+        });
+        add(boton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 402, 138, 38));
+
+        boton3.setText("3");
+        add(boton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 402, 138, 38));
+
+        botonSumar.setText("+");
+        add(botonSumar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 402, 138, 38));
+
+        botonE.setText("E");
+        add(botonE, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 402, 138, 38));
+
+        boton1.setText("1");
+        add(boton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 402, 138, 38));
+
+        boton5.setText("5");
+        boton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton5ActionPerformed(evt);
+            }
+        });
+        add(boton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 352, 138, 38));
+
+        boton6.setText("6");
+        add(boton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 352, 138, 38));
+
+        botonDividir.setText("÷");
+        add(botonDividir, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 352, 138, 38));
+
+        botonD.setText("D");
+        add(botonD, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 352, 138, 38));
+
+        boton4.setText("4");
+        add(boton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 352, 138, 38));
+
+        boton8.setText("8");
+        boton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton8ActionPerformed(evt);
+            }
+        });
+        add(boton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 302, 138, 38));
+
+        boton9.setText("9");
+        add(boton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 302, 138, 38));
+
+        botonMultiplicar.setText("x");
+        add(botonMultiplicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 302, 138, 38));
+
+        botonC.setText("C");
+        add(botonC, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 302, 138, 38));
+
+        boton7.setText("7");
+        add(boton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 302, 138, 38));
+
+        botonCerrarParentesis.setText(")");
+        botonCerrarParentesis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCerrarParentesisActionPerformed(evt);
+            }
+        });
+        add(botonCerrarParentesis, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 252, 138, 38));
+
+        botonMod.setText("Mod");
+        botonMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModActionPerformed(evt);
+            }
+        });
+        add(botonMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 252, 138, 38));
+
+        botonRestar.setText("-");
+        add(botonRestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 252, 138, 38));
+
+        botonB.setText("B");
+        add(botonB, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 252, 138, 38));
+
+        botonAbrirParentesis.setText("(");
+        add(botonAbrirParentesis, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 252, 138, 38));
+
+        botonEliminarTodo.setBackground(new java.awt.Color(255, 51, 0));
+        botonEliminarTodo.setText("AC");
+        add(botonEliminarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 202, 138, 38));
+
+        botonEliminar.setBackground(new java.awt.Color(255, 51, 0));
+        botonEliminar.setText("DEL");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
+        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 202, 138, 38));
+
+        botonA.setText("A");
+        add(botonA, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 202, 440, 38));
+
+        vistaOperaciones.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        vistaOperaciones.setForeground(new java.awt.Color(153, 153, 153));
+        vistaOperaciones.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        vistaOperaciones.setBorder(null);
+        vistaOperaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        vistaOperaciones.setFocusable(false);
+        vistaOperaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vistaOperacionesActionPerformed(evt);
+            }
+        });
+        add(vistaOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 18, 738, 24));
+
+        operaciones.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        operaciones.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        operaciones.setText("0");
+        operaciones.setBorder(null);
+        operaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        operaciones.setFocusable(false);
+        operaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                operacionesActionPerformed(evt);
+            }
+        });
+        add(operaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 38, 738, 52));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanelHEX.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelHEX.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelHEXMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanelHEXMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanelHEXMouseExited(evt);
+            }
+        });
+
+        jLabelHEX.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelHEX.setText("HEX   0");
+
+        javax.swing.GroupLayout jPanelHEXLayout = new javax.swing.GroupLayout(jPanelHEX);
+        jPanelHEX.setLayout(jPanelHEXLayout);
+        jPanelHEXLayout.setHorizontalGroup(
+            jPanelHEXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelHEXLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addComponent(jLabelHEX, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(125, 125, 125))
+        jPanelHEXLayout.setVerticalGroup(
+            jPanelHEXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelHEXLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelHEX)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelHEX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 28, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanelHEX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 88, 734, -1));
+
+        jPanelDEC.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelDEC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelDECMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanelDECMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanelDECMouseExited(evt);
+            }
+        });
+
+        jLabelDEC.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelDEC.setText("DEC   0");
+
+        javax.swing.GroupLayout jPanelDECLayout = new javax.swing.GroupLayout(jPanelDEC);
+        jPanelDEC.setLayout(jPanelDECLayout);
+        jPanelDECLayout.setHorizontalGroup(
+            jPanelDECLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDECLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelDEC, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanelDECLayout.setVerticalGroup(
+            jPanelDECLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDECLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelDEC)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        add(jPanelDEC, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 111, -1, -1));
+
+        jPanelOCT.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelOCT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelOCTMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanelOCTMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanelOCTMouseExited(evt);
+            }
+        });
+
+        jLabelOCT.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelOCT.setText("OCT   0");
+
+        javax.swing.GroupLayout jPanelOCTLayout = new javax.swing.GroupLayout(jPanelOCT);
+        jPanelOCT.setLayout(jPanelOCTLayout);
+        jPanelOCTLayout.setHorizontalGroup(
+            jPanelOCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelOCTLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelOCT, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanelOCTLayout.setVerticalGroup(
+            jPanelOCTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOCTLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelOCT)
+                .addContainerGap())
+        );
+
+        add(jPanelOCT, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 138, -1, -1));
+
+        jPanelBIN.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelBIN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelBINMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanelBINMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanelBINMouseExited(evt);
+            }
+        });
+
+        jLabelBIN.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelBIN.setText("BIN    0");
+
+        javax.swing.GroupLayout jPanelBINLayout = new javax.swing.GroupLayout(jPanelBIN);
+        jPanelBIN.setLayout(jPanelBINLayout);
+        jPanelBINLayout.setHorizontalGroup(
+            jPanelBINLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBINLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelBIN, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanelBINLayout.setVerticalGroup(
+            jPanelBINLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBINLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelBIN)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        add(jPanelBIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 165, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void boton0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton0ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boton0ActionPerformed
+
+    private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boton2ActionPerformed
+
+    private void boton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boton5ActionPerformed
+
+    private void boton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boton8ActionPerformed
+
+    private void botonCerrarParentesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarParentesisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCerrarParentesisActionPerformed
+
+    private void vistaOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaOperacionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vistaOperacionesActionPerformed
+
+    private void operacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operacionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_operacionesActionPerformed
+
+    private void jPanelHEXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelHEXMouseClicked
+        setSelectedPanel(jPanelHEX);
+    }//GEN-LAST:event_jPanelHEXMouseClicked
+
+    private void jPanelHEXMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelHEXMouseEntered
+        if (selectedPanel != jPanelHEX) {
+             jPanelHEX.setBackground(new java.awt.Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_jPanelHEXMouseEntered
+
+    private void jPanelHEXMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelHEXMouseExited
+        if (selectedPanel != jPanelHEX) {
+             jPanelHEX.setBackground(new java.awt.Color(255, 255, 255));
+        }
+    }//GEN-LAST:event_jPanelHEXMouseExited
+
+    private void jPanelDECMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelDECMouseClicked
+         setSelectedPanel(jPanelDEC);
+    }//GEN-LAST:event_jPanelDECMouseClicked
+
+    private void jPanelDECMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelDECMouseEntered
+        if (selectedPanel != jPanelDEC) {
+             jPanelDEC.setBackground(new java.awt.Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_jPanelDECMouseEntered
+
+    private void jPanelDECMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelDECMouseExited
+        if (selectedPanel != jPanelDEC) {
+             jPanelDEC.setBackground(new java.awt.Color(255, 255, 255));
+        }
+    }//GEN-LAST:event_jPanelDECMouseExited
+
+    private void jPanelOCTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelOCTMouseClicked
+        setSelectedPanel(jPanelOCT);
+    }//GEN-LAST:event_jPanelOCTMouseClicked
+
+    private void jPanelOCTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelOCTMouseEntered
+        if (selectedPanel != jPanelOCT) {
+             jPanelOCT.setBackground(new java.awt.Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_jPanelOCTMouseEntered
+
+    private void jPanelOCTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelOCTMouseExited
+        if (selectedPanel != jPanelOCT) {
+             jPanelOCT.setBackground(new java.awt.Color(255, 255, 255));
+        }
+    }//GEN-LAST:event_jPanelOCTMouseExited
+
+    private void jPanelBINMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelBINMouseClicked
+        setSelectedPanel(jPanelBIN);
+    }//GEN-LAST:event_jPanelBINMouseClicked
+
+    private void jPanelBINMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelBINMouseEntered
+        if (selectedPanel != jPanelBIN) {
+             jPanelBIN.setBackground(new java.awt.Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_jPanelBINMouseEntered
+
+    private void jPanelBINMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelBINMouseExited
+        if (selectedPanel != jPanelBIN) {
+             jPanelBIN.setBackground(new java.awt.Color(255, 255, 255));
+        }
+    }//GEN-LAST:event_jPanelBINMouseExited
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void botonModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonModActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton boton0;
+    private javax.swing.JButton boton1;
+    private javax.swing.JButton boton2;
+    private javax.swing.JButton boton3;
+    private javax.swing.JButton boton4;
+    private javax.swing.JButton boton5;
+    private javax.swing.JButton boton6;
+    private javax.swing.JButton boton7;
+    private javax.swing.JButton boton8;
+    private javax.swing.JButton boton9;
+    private javax.swing.JButton botonA;
+    private javax.swing.JButton botonAbrirParentesis;
+    private javax.swing.JButton botonB;
+    private javax.swing.JButton botonC;
+    private javax.swing.JButton botonCambiarNegativoPositivo;
+    private javax.swing.JButton botonCerrarParentesis;
+    private javax.swing.JButton botonComa;
+    private javax.swing.JButton botonD;
+    private javax.swing.JButton botonDividir;
+    private javax.swing.JButton botonE;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonEliminarTodo;
+    private javax.swing.JButton botonF;
+    private javax.swing.JButton botonIgual;
+    private javax.swing.JButton botonMod;
+    private javax.swing.JButton botonMultiplicar;
+    private javax.swing.JButton botonRestar;
+    private javax.swing.JButton botonSumar;
+    private javax.swing.JLabel jLabelBIN;
+    private javax.swing.JLabel jLabelDEC;
+    private javax.swing.JLabel jLabelHEX;
+    private javax.swing.JLabel jLabelOCT;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelBIN;
+    private javax.swing.JPanel jPanelDEC;
+    private javax.swing.JPanel jPanelHEX;
+    private javax.swing.JPanel jPanelOCT;
+    private javax.swing.JTextField operaciones;
+    private javax.swing.JTextField vistaOperaciones;
     // End of variables declaration//GEN-END:variables
 }

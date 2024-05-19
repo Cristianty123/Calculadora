@@ -176,6 +176,7 @@ public class Cientifica extends javax.swing.JPanel {
             }
         });
 
+        botonIgual.setBackground(new java.awt.Color(0, 90, 158));
         botonIgual.setText("=");
         botonIgual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
