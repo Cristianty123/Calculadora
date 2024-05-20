@@ -1,11 +1,16 @@
 package calculadora.vista.mode;
 
+import calculadora.controlador.CalculadoraControlador;
 import calculadora.model.operacion.convercion.Convertir;
+import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 
 
 public class Convercion extends javax.swing.JPanel {
 
+    private DefaultListModel<String> historialModel = new DefaultListModel();
+    private CalculadoraControlador controlador;
+    private String numeroAnterior = "0";
     private Convertir convertidor;
     private JPanel selectedPanel = null;
     private boolean igual = true;
@@ -98,30 +103,20 @@ public class Convercion extends javax.swing.JPanel {
     private void initComponents() {
 
         botonF = new javax.swing.JButton();
-        botonCambiarNegativoPositivo = new javax.swing.JButton();
         boton0 = new javax.swing.JButton();
-        botonComa = new javax.swing.JButton();
-        botonIgual = new javax.swing.JButton();
         boton2 = new javax.swing.JButton();
         boton3 = new javax.swing.JButton();
-        botonSumar = new javax.swing.JButton();
         botonE = new javax.swing.JButton();
         boton1 = new javax.swing.JButton();
         boton5 = new javax.swing.JButton();
         boton6 = new javax.swing.JButton();
-        botonDividir = new javax.swing.JButton();
         botonD = new javax.swing.JButton();
         boton4 = new javax.swing.JButton();
         boton8 = new javax.swing.JButton();
         boton9 = new javax.swing.JButton();
-        botonMultiplicar = new javax.swing.JButton();
         botonC = new javax.swing.JButton();
         boton7 = new javax.swing.JButton();
-        botonCerrarParentesis = new javax.swing.JButton();
-        botonMod = new javax.swing.JButton();
-        botonRestar = new javax.swing.JButton();
         botonB = new javax.swing.JButton();
-        botonAbrirParentesis = new javax.swing.JButton();
         botonEliminarTodo = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         botonA = new javax.swing.JButton();
@@ -147,24 +142,13 @@ public class Convercion extends javax.swing.JPanel {
         });
         add(botonF, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 452, 138, 38));
 
-        botonCambiarNegativoPositivo.setText("+/-");
-        add(botonCambiarNegativoPositivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 452, 138, 38));
-
         boton0.setText("0");
         boton0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton0ActionPerformed(evt);
             }
         });
-        add(boton0, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 452, 138, 38));
-
-        botonComa.setText(",");
-        botonComa.setEnabled(false);
-        add(botonComa, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 452, 138, 38));
-
-        botonIgual.setBackground(new java.awt.Color(131, 169, 192));
-        botonIgual.setText("=");
-        add(botonIgual, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 452, 138, 38));
+        add(boton0, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 520, 38));
 
         boton2.setText("2");
         boton2.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +156,7 @@ public class Convercion extends javax.swing.JPanel {
                 boton2ActionPerformed(evt);
             }
         });
-        add(boton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 402, 138, 38));
+        add(boton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 138, 38));
 
         boton3.setText("3");
         boton3.addActionListener(new java.awt.event.ActionListener() {
@@ -180,15 +164,7 @@ public class Convercion extends javax.swing.JPanel {
                 boton3ActionPerformed(evt);
             }
         });
-        add(boton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 402, 138, 38));
-
-        botonSumar.setText("+");
-        botonSumar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSumarActionPerformed(evt);
-            }
-        });
-        add(botonSumar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 402, 138, 38));
+        add(boton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 400, 138, 38));
 
         botonE.setText("E");
         botonE.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +180,7 @@ public class Convercion extends javax.swing.JPanel {
                 boton1ActionPerformed(evt);
             }
         });
-        add(boton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 402, 138, 38));
+        add(boton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 138, 38));
 
         boton5.setText("5");
         boton5.addActionListener(new java.awt.event.ActionListener() {
@@ -212,7 +188,7 @@ public class Convercion extends javax.swing.JPanel {
                 boton5ActionPerformed(evt);
             }
         });
-        add(boton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 352, 138, 38));
+        add(boton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 138, 38));
 
         boton6.setText("6");
         boton6.addActionListener(new java.awt.event.ActionListener() {
@@ -220,15 +196,7 @@ public class Convercion extends javax.swing.JPanel {
                 boton6ActionPerformed(evt);
             }
         });
-        add(boton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 352, 138, 38));
-
-        botonDividir.setText("÷");
-        botonDividir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonDividirActionPerformed(evt);
-            }
-        });
-        add(botonDividir, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 352, 138, 38));
+        add(boton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 138, 38));
 
         botonD.setText("D");
         botonD.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +212,7 @@ public class Convercion extends javax.swing.JPanel {
                 boton4ActionPerformed(evt);
             }
         });
-        add(boton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 352, 138, 38));
+        add(boton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 138, 38));
 
         boton8.setText("8");
         boton8.addActionListener(new java.awt.event.ActionListener() {
@@ -252,7 +220,7 @@ public class Convercion extends javax.swing.JPanel {
                 boton8ActionPerformed(evt);
             }
         });
-        add(boton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 302, 138, 38));
+        add(boton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 138, 38));
 
         boton9.setText("9");
         boton9.addActionListener(new java.awt.event.ActionListener() {
@@ -260,15 +228,7 @@ public class Convercion extends javax.swing.JPanel {
                 boton9ActionPerformed(evt);
             }
         });
-        add(boton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 302, 138, 38));
-
-        botonMultiplicar.setText("x");
-        botonMultiplicar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonMultiplicarActionPerformed(evt);
-            }
-        });
-        add(botonMultiplicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 302, 138, 38));
+        add(boton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 300, 138, 38));
 
         botonC.setText("C");
         botonC.addActionListener(new java.awt.event.ActionListener() {
@@ -284,31 +244,7 @@ public class Convercion extends javax.swing.JPanel {
                 boton7ActionPerformed(evt);
             }
         });
-        add(boton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 302, 138, 38));
-
-        botonCerrarParentesis.setText(")");
-        botonCerrarParentesis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCerrarParentesisActionPerformed(evt);
-            }
-        });
-        add(botonCerrarParentesis, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 252, 138, 38));
-
-        botonMod.setText("Mod");
-        botonMod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonModActionPerformed(evt);
-            }
-        });
-        add(botonMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 252, 138, 38));
-
-        botonRestar.setText("-");
-        botonRestar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRestarActionPerformed(evt);
-            }
-        });
-        add(botonRestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 252, 138, 38));
+        add(boton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 138, 38));
 
         botonB.setText("B");
         botonB.addActionListener(new java.awt.event.ActionListener() {
@@ -318,14 +254,6 @@ public class Convercion extends javax.swing.JPanel {
         });
         add(botonB, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 252, 138, 38));
 
-        botonAbrirParentesis.setText("(");
-        botonAbrirParentesis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAbrirParentesisActionPerformed(evt);
-            }
-        });
-        add(botonAbrirParentesis, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 252, 138, 38));
-
         botonEliminarTodo.setBackground(new java.awt.Color(255, 105, 98));
         botonEliminarTodo.setText("AC");
         botonEliminarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -333,7 +261,7 @@ public class Convercion extends javax.swing.JPanel {
                 botonEliminarTodoActionPerformed(evt);
             }
         });
-        add(botonEliminarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 202, 138, 38));
+        add(botonEliminarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 138, 38));
 
         botonEliminar.setBackground(new java.awt.Color(255, 105, 98));
         botonEliminar.setText("DEL");
@@ -342,7 +270,7 @@ public class Convercion extends javax.swing.JPanel {
                 botonEliminarActionPerformed(evt);
             }
         });
-        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 202, 138, 38));
+        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 138, 38));
 
         botonA.setText("A");
         botonA.addActionListener(new java.awt.event.ActionListener() {
@@ -350,7 +278,7 @@ public class Convercion extends javax.swing.JPanel {
                 botonAActionPerformed(evt);
             }
         });
-        add(botonA, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 202, 440, 38));
+        add(botonA, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 140, 38));
 
         vistaOperaciones.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         vistaOperaciones.setForeground(new java.awt.Color(153, 153, 153));
@@ -543,27 +471,33 @@ public class Convercion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     private void botonNumeroActionPerformed(java.awt.event.ActionEvent evt, String numero) {
         String textoOperaciones = operaciones.getText();
-        if (textoOperaciones.length() != 40) {
+        if (textoOperaciones.length()!= 40) {
             if (textoOperaciones.equals("0")) {
                 operaciones.setText(numero);
-                igual = false;
                 operador = false;
             } else if (igual == true) {
                 operaciones.setText(numero);
                 vistaOperaciones.setText("");
                 igual = false;
                 operacionBolean = false;
-
             } else if (operador == true) {
                 operaciones.setText(numero);
                 operador = false;
             } else {
                 operaciones.setText(textoOperaciones + numero);
             }
-            parentesis = false;
+            textoOperaciones = operaciones.getText();
+            // Convertir número según el panel seleccionado
+            if (selectedPanel.equals(jPanelBIN)) {
+                actualizarValorBinaary(textoOperaciones);
+            } else if (selectedPanel.equals(jPanelHEX)) {
+                actualizarValorHexaecimal(textoOperaciones);
+            } else if (selectedPanel.equals(jPanelOCT)) {
+                actualizarValorOctal(textoOperaciones);
+            } else if (selectedPanel.equals(jPanelDEC)) {
+                actualizarValorDecimal(textoOperaciones);
+            }
         }
-        textoOperaciones = operaciones.getText();
-        actualizarValorDecimal(textoOperaciones);
     }
     
     private void actualizarValorDecimal(String numero) {
@@ -573,6 +507,33 @@ public class Convercion extends javax.swing.JPanel {
         jLabelBIN.setText("BIN    " + convertidor.decimalToBinary(numero));
         jLabelOCT.setText("OCT    " + convertidor.decimalToOctal(numero));
         jLabelHEX.setText("HEX    " + convertidor.decimalToHexadecimal(numero));
+    }
+    
+    private void actualizarValorHexaecimal(String numero) {
+        int valorDecimal = Integer.parseInt(numero, 16);
+        operaciones.setText(numero);
+        jLabelDEC.setText("DEC    " + valorDecimal);
+        jLabelBIN.setText("BIN    " + convertidor.toBinary(Integer.toString(valorDecimal, 2)));
+        jLabelOCT.setText("OCT    " + convertidor.toOctal(Integer.toString(valorDecimal, 8)));
+        jLabelHEX.setText("HEX    " + numero);
+    }
+    
+    private void actualizarValorOctal(String numero) {
+        int valorDecimal = Integer.parseInt(numero);
+        operaciones.setText(String.valueOf(valorDecimal));
+        jLabelDEC.setText("DEC    " + convertidor.toDecimal(numero));
+        jLabelBIN.setText("BIN    " + convertidor.toBinary(numero));
+        jLabelOCT.setText("OCT    " + numero);
+        jLabelHEX.setText("HEX    " + convertidor.toHexadecimal(numero));
+    }
+    
+    private void actualizarValorBinaary(String numero) {
+        int valorDecimal = Integer.parseInt(numero);
+        operaciones.setText(String.valueOf(valorDecimal));
+        jLabelDEC.setText("DEC    " + convertidor.toDecimal(numero));
+        jLabelBIN.setText("BIN    " + numero);
+        jLabelOCT.setText("OCT    " + convertidor.toOctal(numero));
+        jLabelHEX.setText("HEX    " + convertidor.toHexadecimal(numero));
     }
     
     private void boton0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton0ActionPerformed
@@ -590,10 +551,6 @@ public class Convercion extends javax.swing.JPanel {
     private void boton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton8ActionPerformed
          botonNumeroActionPerformed(evt, "8");
     }//GEN-LAST:event_boton8ActionPerformed
-
-    private void botonCerrarParentesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarParentesisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonCerrarParentesisActionPerformed
 
     private void vistaOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaOperacionesActionPerformed
         // TODO add your handling code here:
@@ -671,10 +628,7 @@ public class Convercion extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonEliminarActionPerformed
 
-    private void botonModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonModActionPerformed
-
+    
     private void botonBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBActionPerformed
          botonNumeroActionPerformed(evt, "b");
     }//GEN-LAST:event_botonBActionPerformed
@@ -723,30 +677,25 @@ public class Convercion extends javax.swing.JPanel {
          botonNumeroActionPerformed(evt, "9");
     }//GEN-LAST:event_boton9ActionPerformed
 
-    private void botonAbrirParentesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirParentesisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonAbrirParentesisActionPerformed
-
-    private void botonRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRestarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonRestarActionPerformed
-
-    private void botonMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMultiplicarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonMultiplicarActionPerformed
-
-    private void botonDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDividirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonDividirActionPerformed
-
-    private void botonSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSumarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonSumarActionPerformed
-
     private void botonEliminarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarTodoActionPerformed
-        // TODO add your handling code here:
+        if(operaciones.getText().equals("0")){
+            vistaOperaciones.setText("");
+            igual = true;
+            operacionBolean = false;
+            operador = false;
+            contadorParentesis = 0;
+        }else{
+            operaciones.setText("0");
+            jLabelBIN.setText("BIN 0");
+            jLabelDEC.setText("DEC 0");
+            jLabelHEX.setText("HEX 0");
+            jLabelOCT.setText("OCT 0");
+        }
     }//GEN-LAST:event_botonEliminarTodoActionPerformed
 
+    private void igualarActionPerformed(java.awt.event.ActionEvent evt){
+       
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton0;
@@ -760,23 +709,13 @@ public class Convercion extends javax.swing.JPanel {
     private javax.swing.JButton boton8;
     private javax.swing.JButton boton9;
     private javax.swing.JButton botonA;
-    private javax.swing.JButton botonAbrirParentesis;
     private javax.swing.JButton botonB;
     private javax.swing.JButton botonC;
-    private javax.swing.JButton botonCambiarNegativoPositivo;
-    private javax.swing.JButton botonCerrarParentesis;
-    private javax.swing.JButton botonComa;
     private javax.swing.JButton botonD;
-    private javax.swing.JButton botonDividir;
     private javax.swing.JButton botonE;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonEliminarTodo;
     private javax.swing.JButton botonF;
-    private javax.swing.JButton botonIgual;
-    private javax.swing.JButton botonMod;
-    private javax.swing.JButton botonMultiplicar;
-    private javax.swing.JButton botonRestar;
-    private javax.swing.JButton botonSumar;
     private javax.swing.JLabel jLabelBIN;
     private javax.swing.JLabel jLabelDEC;
     private javax.swing.JLabel jLabelHEX;

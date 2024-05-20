@@ -53,9 +53,9 @@ calculadora\vista\mode\Cientifica$37.class
 calculadora\vista\mode\Convercion.class
 calculadora\vista\mode\Cientifica$3.class
 calculadora\vista\mode\Cientifica$6.class
-calculadora\vista\mode\Convercion$31.class
 calculadora\vista\mode\CMPLX.class
 calculadora\vista\CalculadoraVista$2.class
+calculadora\model\operacion\convercion\Suma.class
 calculadora\vista\mode\Cientifica$23.class
 calculadora\vista\mode\Cientifica$29.class
 calculadora\vista\mode\Cientifica$13.class

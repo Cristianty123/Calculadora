@@ -13,6 +13,7 @@ public class CalculadoraVista extends javax.swing.JFrame {
 
     private JPanel selectedPanel = null;
     private Cientifica cientifica;
+    private Convercion convercion;
      private CalculadoraControlador controlador;
     
     public CalculadoraVista() {
