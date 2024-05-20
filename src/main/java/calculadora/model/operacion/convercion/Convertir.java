@@ -2,72 +2,111 @@ package calculadora.model.operacion.convercion;
 
 public class Convertir {
 
-    // Método para convertir un número decimal a binario
-    public String decBin(String dec) {
-        int decimal = Integer.parseInt(dec);
-        return Integer.toBinaryString(decimal);
+    private static final String PATTERN_BINARY = "[01]+";
+    private static final String PATTERN_OCTAL = "[0-7]+";
+    private static final String PATTERN_DECIMAL = "[0-9]+";
+    private static final String PATTERN_HEXADECIMAL = "[0-9A-Fa-f]+";
+
+    public String toDecimal(String num) {
+        try {
+            if (num.matches(PATTERN_BINARY)) {
+                return String.valueOf(Integer.parseInt(num, 2));
+            } else if (num.matches(PATTERN_OCTAL)) {
+                return String.valueOf(Integer.parseInt(num, 8));
+            } else if (num.matches(PATTERN_DECIMAL)) {
+                return num;
+            } else if (num.matches(PATTERN_HEXADECIMAL)) {
+                return String.valueOf(Integer.parseInt(num, 16));
+            } else {
+                return "Formato no válido";
+            }
+        } catch (NumberFormatException e) {
+            return "Error de conversión";
+        }
     }
 
-    // Método para convertir un número decimal a hexadecimal
-    public String decHex(String dec) {
-        int decimal = Integer.parseInt(dec);
-        return Integer.toHexString(decimal);
+    public String toHexadecimal(String num) {
+        try {
+            if (num.matches(PATTERN_BINARY)) {
+                int decimal = Integer.parseInt(num, 2);
+                return String.format("%x", decimal);
+            } else if (num.matches(PATTERN_OCTAL)) {
+                int decimal = Integer.parseInt(num, 8);
+                return String.format("%x", decimal);
+            } else if (num.matches(PATTERN_HEXADECIMAL)) {
+                return num;
+            } else {
+                int decimal = Integer.parseInt(num);
+                return String.format("%x", decimal);
+            }
+        } catch (NumberFormatException e) {
+            return "Error de conversión";
+        }
     }
 
-    // Método para convertir un número decimal a octal
-    public String decOct(String dec) {
-        int decimal = Integer.parseInt(dec);
-        return Integer.toOctalString(decimal);
+    public String toOctal(String num) {
+        try {
+            if (num.matches(PATTERN_BINARY)) {
+                int decimal = Integer.parseInt(num, 2);
+                return String.format("%o", decimal);
+            } else if (num.matches(PATTERN_OCTAL)) {
+                return num;
+            } else if (num.matches(PATTERN_HEXADECIMAL)) {
+                int decimal = Integer.parseInt(num, 16);
+                return String.format("%o", decimal);
+            } else {
+                int decimal = Integer.parseInt(num);
+                return String.format("%o", decimal);
+            }
+        } catch (NumberFormatException e) {
+            return "Error de conversión";
+        }
     }
 
-    // Método para convertir un número binario a decimal
-    public String binDec(String bin) {
-        return String.valueOf(Integer.parseInt(bin, 2));
+    public String toBinary(String num) {
+        try {
+            if (num.matches(PATTERN_BINARY)) {
+                return num;
+            } else if (num.matches(PATTERN_OCTAL)) {
+                int decimal = Integer.parseInt(num, 8);
+                return String.format("%32s", Integer.toBinaryString(decimal)).replace(' ', '0');
+            } else if (num.matches(PATTERN_HEXADECIMAL)) {
+                int decimal = Integer.parseInt(num, 16);
+                return String.format("%32s", Integer.toBinaryString(decimal)).replace(' ', '0');
+            } else {
+                int decimal = Integer.parseInt(num);
+                return String.format("%32s", Integer.toBinaryString(decimal)).replace(' ', '0');
+            }
+        } catch (NumberFormatException e) {
+            return "Error de conversión";
+        }
+    }
+    
+    public String decimalToBinary(String num) {
+        try {
+            int decimal = Integer.parseInt(num);
+            return String.format("%32s", Integer.toBinaryString(decimal)).replace(' ', '0');
+        } catch (NumberFormatException e) {
+            return "Error de conversión";
+        }
     }
 
-    // Método para convertir un número binario a hexadecimal
-    public String binHex(String bin) {
-        int decimal = Integer.parseInt(bin, 2);
-        return Integer.toHexString(decimal);
+    public String decimalToOctal(String num) {
+        try {
+            int decimal = Integer.parseInt(num);
+            return String.format("%o", decimal);
+        } catch (NumberFormatException e) {
+            return "Error de conversión";
+        }
     }
 
-    // Método para convertir un número binario a octal
-    public String binOct(String bin) {
-        int decimal = Integer.parseInt(bin, 2);
-        return Integer.toOctalString(decimal);
+    public String decimalToHexadecimal(String num) {
+        try {
+            int decimal = Integer.parseInt(num);
+            return String.format("%x", decimal);
+        } catch (NumberFormatException e) {
+            return "Error de conversión";
+        }
     }
-
-    // Método para convertir un número hexadecimal a decimal
-    public String hexDec(String hex) {
-        return String.valueOf(Integer.parseInt(hex, 16));
-    }
-
-    // Método para convertir un número hexadecimal a binario
-    public String hexBin(String hex) {
-        int decimal = Integer.parseInt(hex, 16);
-        return Integer.toBinaryString(decimal);
-    }
-
-    // Método para convertir un número hexadecimal a octal
-    public String hexOct(String hex) {
-        int decimal = Integer.parseInt(hex, 16);
-        return Integer.toOctalString(decimal);
-    }
-
-    // Método para convertir un número octal a decimal
-    public String octDec(String oct) {
-        return String.valueOf(Integer.parseInt(oct, 8));
-    }
-
-    // Método para convertir un número octal a binario
-    public String octBin(String oct) {
-        int decimal = Integer.parseInt(oct, 8);
-        return Integer.toBinaryString(decimal);
-    }
-
-    // Método para convertir un número octal a hexadecimal
-    public String octHex(String oct) {
-        int decimal = Integer.parseInt(oct, 8);
-        return Integer.toHexString(decimal);
-    }
+    
 }

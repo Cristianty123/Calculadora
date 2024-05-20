@@ -1,14 +1,22 @@
 package calculadora.vista.mode;
 
+import calculadora.model.operacion.convercion.Convertir;
 import javax.swing.JPanel;
 
 
 public class Convercion extends javax.swing.JPanel {
 
+    private Convertir convertidor;
     private JPanel selectedPanel = null;
+    private boolean igual = true;
+    private boolean operacionBolean = false;
+    private boolean operador = false;
+    private boolean parentesis = false;
+    private int contadorParentesis = 0;
     public Convercion() {
         initComponents();
         setSelectedPanel(jPanelDEC);
+        convertidor = new Convertir();
     }
     
     private void setSelectedPanel(JPanel panel) {
@@ -132,6 +140,11 @@ public class Convercion extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonF.setText("F");
+        botonF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonFActionPerformed(evt);
+            }
+        });
         add(botonF, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 452, 138, 38));
 
         botonCambiarNegativoPositivo.setText("+/-");
@@ -162,15 +175,35 @@ public class Convercion extends javax.swing.JPanel {
         add(boton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 402, 138, 38));
 
         boton3.setText("3");
+        boton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton3ActionPerformed(evt);
+            }
+        });
         add(boton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 402, 138, 38));
 
         botonSumar.setText("+");
+        botonSumar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSumarActionPerformed(evt);
+            }
+        });
         add(botonSumar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 402, 138, 38));
 
         botonE.setText("E");
+        botonE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEActionPerformed(evt);
+            }
+        });
         add(botonE, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 402, 138, 38));
 
         boton1.setText("1");
+        boton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton1ActionPerformed(evt);
+            }
+        });
         add(boton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 402, 138, 38));
 
         boton5.setText("5");
@@ -182,15 +215,35 @@ public class Convercion extends javax.swing.JPanel {
         add(boton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 352, 138, 38));
 
         boton6.setText("6");
+        boton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton6ActionPerformed(evt);
+            }
+        });
         add(boton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 352, 138, 38));
 
         botonDividir.setText("÷");
+        botonDividir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDividirActionPerformed(evt);
+            }
+        });
         add(botonDividir, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 352, 138, 38));
 
         botonD.setText("D");
+        botonD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDActionPerformed(evt);
+            }
+        });
         add(botonD, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 352, 138, 38));
 
         boton4.setText("4");
+        boton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton4ActionPerformed(evt);
+            }
+        });
         add(boton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 352, 138, 38));
 
         boton8.setText("8");
@@ -202,15 +255,35 @@ public class Convercion extends javax.swing.JPanel {
         add(boton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 302, 138, 38));
 
         boton9.setText("9");
+        boton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton9ActionPerformed(evt);
+            }
+        });
         add(boton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 302, 138, 38));
 
         botonMultiplicar.setText("x");
+        botonMultiplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMultiplicarActionPerformed(evt);
+            }
+        });
         add(botonMultiplicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 302, 138, 38));
 
         botonC.setText("C");
+        botonC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCActionPerformed(evt);
+            }
+        });
         add(botonC, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 302, 138, 38));
 
         boton7.setText("7");
+        boton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton7ActionPerformed(evt);
+            }
+        });
         add(boton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 302, 138, 38));
 
         botonCerrarParentesis.setText(")");
@@ -230,16 +303,36 @@ public class Convercion extends javax.swing.JPanel {
         add(botonMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 252, 138, 38));
 
         botonRestar.setText("-");
+        botonRestar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRestarActionPerformed(evt);
+            }
+        });
         add(botonRestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 252, 138, 38));
 
         botonB.setText("B");
+        botonB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBActionPerformed(evt);
+            }
+        });
         add(botonB, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 252, 138, 38));
 
         botonAbrirParentesis.setText("(");
+        botonAbrirParentesis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAbrirParentesisActionPerformed(evt);
+            }
+        });
         add(botonAbrirParentesis, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 252, 138, 38));
 
         botonEliminarTodo.setBackground(new java.awt.Color(255, 105, 98));
         botonEliminarTodo.setText("AC");
+        botonEliminarTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarTodoActionPerformed(evt);
+            }
+        });
         add(botonEliminarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 202, 138, 38));
 
         botonEliminar.setBackground(new java.awt.Color(255, 105, 98));
@@ -252,6 +345,11 @@ public class Convercion extends javax.swing.JPanel {
         add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 202, 138, 38));
 
         botonA.setText("A");
+        botonA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAActionPerformed(evt);
+            }
+        });
         add(botonA, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 202, 440, 38));
 
         vistaOperaciones.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
@@ -443,21 +541,54 @@ public class Convercion extends javax.swing.JPanel {
 
         add(jPanelBIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 165, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+    private void botonNumeroActionPerformed(java.awt.event.ActionEvent evt, String numero) {
+        String textoOperaciones = operaciones.getText();
+        if (textoOperaciones.length() != 40) {
+            if (textoOperaciones.equals("0")) {
+                operaciones.setText(numero);
+                igual = false;
+                operador = false;
+            } else if (igual == true) {
+                operaciones.setText(numero);
+                vistaOperaciones.setText("");
+                igual = false;
+                operacionBolean = false;
 
+            } else if (operador == true) {
+                operaciones.setText(numero);
+                operador = false;
+            } else {
+                operaciones.setText(textoOperaciones + numero);
+            }
+            parentesis = false;
+        }
+        textoOperaciones = operaciones.getText();
+        actualizarValorDecimal(textoOperaciones);
+    }
+    
+    private void actualizarValorDecimal(String numero) {
+        int valorDecimal = Integer.parseInt(numero);
+        operaciones.setText(String.valueOf(valorDecimal));
+        jLabelDEC.setText("DEC    " + numero);
+        jLabelBIN.setText("BIN    " + convertidor.decimalToBinary(numero));
+        jLabelOCT.setText("OCT    " + convertidor.decimalToOctal(numero));
+        jLabelHEX.setText("HEX    " + convertidor.decimalToHexadecimal(numero));
+    }
+    
     private void boton0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton0ActionPerformed
-        // TODO add your handling code here:
+        botonNumeroActionPerformed(evt, "0");
     }//GEN-LAST:event_boton0ActionPerformed
 
     private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
-        // TODO add your handling code here:
+         botonNumeroActionPerformed(evt, "2");
     }//GEN-LAST:event_boton2ActionPerformed
 
     private void boton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton5ActionPerformed
-        // TODO add your handling code here:
+         botonNumeroActionPerformed(evt, "5");
     }//GEN-LAST:event_boton5ActionPerformed
 
     private void boton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton8ActionPerformed
-        // TODO add your handling code here:
+         botonNumeroActionPerformed(evt, "8");
     }//GEN-LAST:event_boton8ActionPerformed
 
     private void botonCerrarParentesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarParentesisActionPerformed
@@ -543,6 +674,78 @@ public class Convercion extends javax.swing.JPanel {
     private void botonModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonModActionPerformed
+
+    private void botonBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBActionPerformed
+         botonNumeroActionPerformed(evt, "b");
+    }//GEN-LAST:event_botonBActionPerformed
+
+    private void botonCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCActionPerformed
+         botonNumeroActionPerformed(evt, "c");
+    }//GEN-LAST:event_botonCActionPerformed
+
+    private void botonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAActionPerformed
+         botonNumeroActionPerformed(evt, "a");
+    }//GEN-LAST:event_botonAActionPerformed
+
+    private void botonDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDActionPerformed
+         botonNumeroActionPerformed(evt, "d");
+    }//GEN-LAST:event_botonDActionPerformed
+
+    private void botonEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEActionPerformed
+         botonNumeroActionPerformed(evt, "e");
+    }//GEN-LAST:event_botonEActionPerformed
+
+    private void botonFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFActionPerformed
+         botonNumeroActionPerformed(evt, "f");
+    }//GEN-LAST:event_botonFActionPerformed
+
+    private void boton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton7ActionPerformed
+         botonNumeroActionPerformed(evt, "7");
+    }//GEN-LAST:event_boton7ActionPerformed
+
+    private void boton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton4ActionPerformed
+         botonNumeroActionPerformed(evt, "4");
+    }//GEN-LAST:event_boton4ActionPerformed
+
+    private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
+         botonNumeroActionPerformed(evt, "1");
+    }//GEN-LAST:event_boton1ActionPerformed
+
+    private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
+         botonNumeroActionPerformed(evt, "3");
+    }//GEN-LAST:event_boton3ActionPerformed
+
+    private void boton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton6ActionPerformed
+         botonNumeroActionPerformed(evt, "6");
+    }//GEN-LAST:event_boton6ActionPerformed
+
+    private void boton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton9ActionPerformed
+         botonNumeroActionPerformed(evt, "9");
+    }//GEN-LAST:event_boton9ActionPerformed
+
+    private void botonAbrirParentesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirParentesisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAbrirParentesisActionPerformed
+
+    private void botonRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRestarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRestarActionPerformed
+
+    private void botonMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMultiplicarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonMultiplicarActionPerformed
+
+    private void botonDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDividirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonDividirActionPerformed
+
+    private void botonSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSumarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonSumarActionPerformed
+
+    private void botonEliminarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarTodoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarTodoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
