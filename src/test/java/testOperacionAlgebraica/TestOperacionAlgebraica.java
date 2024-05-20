@@ -69,7 +69,7 @@ public void testSuma(){
     
     @Test
     public void testRaiz() {
-        assertEquals(3.0, OperacionAlgebraica.raiz(27.0, 3.0));
+        assertEquals(1.5874, OperacionAlgebraica.raiz(4, 3.0),0.001);
         assertEquals(4.0, OperacionAlgebraica.raiz(256.0, 4.0));
        
     }

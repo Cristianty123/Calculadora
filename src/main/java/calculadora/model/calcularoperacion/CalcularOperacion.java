@@ -15,52 +15,70 @@ public class CalcularOperacion {
     }
 
     private String resolverParentesis(String expresion) {
+        expresion = expresion.replace("√", "r");
         int inicioParentesis = expresion.indexOf("(");
         while (inicioParentesis != -1) {
-            int indicePrevio = inicioParentesis - 1;
-            while (indicePrevio >= 0 && Character.isWhitespace(expresion.charAt(indicePrevio))) {
-                indicePrevio--;
-            }
-            boolean esFuncion = false;
-            String posibleFuncion = "";
-            if (indicePrevio >= 0) {
-                int inicioFuncion = indicePrevio;
-                while (inicioFuncion >= 0 && Character.isLetter(expresion.charAt(inicioFuncion))) {
-                    inicioFuncion--;
-                }
-                posibleFuncion = expresion.substring(inicioFuncion + 1, inicioParentesis);
-                esFuncion = esFuncionTrigonometrica(posibleFuncion) || esLogaritmo(posibleFuncion);
-            }
-
-            int contador = 1;
-            int finParentesis = inicioParentesis + 1;
-            while (contador != 0 && finParentesis < expresion.length()) {
-                if (expresion.charAt(finParentesis) == '(') {
-                    contador++;
-                } else if (expresion.charAt(finParentesis) == ')') {
-                    contador--;
-                }
-                finParentesis++;
-            }
-            
-            String expresionParentesis = expresion.substring(inicioParentesis + 1, finParentesis - 1);
-            double resultadoParentesis = calcular(expresionParentesis);
-            String resultadoParentesisStr = String.valueOf(resultadoParentesis);
-
-            if (esFuncion) {
-                expresion = expresion.substring(0, inicioParentesis + 1) + resultadoParentesisStr + expresion.substring(finParentesis - 1);
-                inicioParentesis = expresion.indexOf("(", inicioParentesis + resultadoParentesisStr.length() + 1);
-            } else {
-                expresion = expresion.substring(0, inicioParentesis) + resultadoParentesisStr + expresion.substring(finParentesis);
-                inicioParentesis = expresion.indexOf("(");
-            }
+        int indicePrevio = inicioParentesis - 1;
+        while (indicePrevio >= 0 && Character.isWhitespace(expresion.charAt(indicePrevio))) {
+            indicePrevio--;
         }
+        
+        boolean esFuncion = false;
+        String posibleFuncion = "";
+        if (indicePrevio >= 0) {
+            int inicioFuncion = indicePrevio;
+            while (inicioFuncion >= 0 && Character.isLetter(expresion.charAt(inicioFuncion))) {
+                inicioFuncion--;
+            }
+            posibleFuncion = expresion.substring(inicioFuncion + 1, inicioParentesis);
+            
+            esFuncion = esFuncionTrigonometrica(posibleFuncion) || esLogaritmo(posibleFuncion) || esRaiz(posibleFuncion);
+        }
+
+        int contador = 1;
+        int finParentesis = inicioParentesis + 1;
+        while (contador != 0 && finParentesis < expresion.length()) {
+            if (expresion.charAt(finParentesis) == '(') {
+                contador++;
+            } else if (expresion.charAt(finParentesis) == ')') {
+                contador--;
+            }
+            finParentesis++;
+        }
+        
+        String expresionParentesis = expresion.substring(inicioParentesis + 1, finParentesis - 1);
+        double resultadoParentesis = calcular(expresionParentesis);
+        String resultadoParentesisStr = String.valueOf(resultadoParentesis);
+
+        if (esFuncion) {
+            expresion = expresion.substring(0, inicioParentesis + 1) + resultadoParentesisStr + expresion.substring(finParentesis - 1);
+            inicioParentesis = expresion.indexOf("(", inicioParentesis + resultadoParentesisStr.length() + 1);
+        } else {
+            expresion = expresion.substring(0, inicioParentesis) + resultadoParentesisStr + expresion.substring(finParentesis);
+            inicioParentesis = expresion.indexOf("(");
+        }
+    }
+        expresion = expresion.replace("r", "√");
         return expresion;
+}
+
+    private String reemplazarConstantes(String expresion) {
+        expresion = expresion.replaceAll("(?<=\\b|\\()\\b(e|π)\\b",String.valueOf(Math.E));
+        expresion = expresion.replace("( " + String.valueOf(Math.E), "(e");
+        expresion = expresion.replace("( " + String.valueOf(Math.PI), "(π");
+
+        // Reemplazar si la constante está al inicio del string
+        if (expresion.startsWith("e")) {
+            expresion = String.valueOf(Math.E) + expresion.substring(1);
+        } else if (expresion.startsWith("π")) {
+            expresion = String.valueOf(Math.PI) + expresion.substring(1);
+        }
+    return expresion;
     }
 
     public double calcular(String expresion) {
         expresion = expresion.replace(",", ".");
-        System.out.println("Expresion: " + expresion);
+        expresion = reemplazarConstantes(expresion);
         expresion = resolverParentesis(expresion);
         System.out.println("Expresion sin parentesis: " + expresion);
         String[] tokens = expresion.split(" ");
@@ -80,6 +98,16 @@ public class CalcularOperacion {
                 double resultado = calcularLogaritmo(funcion, numero);
                 tokens[0] = String.valueOf(resultado);
             }
+            if (esRaiz(tokens[0])) {
+                int indiceParentesis = tokens[0].indexOf('(');
+                String funcion = tokens[0].substring(0, indiceParentesis);
+                System.out.println("funcion: " + funcion);
+                double numero = Double.parseDouble(tokens[0].substring(indiceParentesis + 1, tokens[0].length() - 1));
+                System.out.println("numero: " + numero);
+                double resultado = calcularRaiz(funcion, numero);
+                System.out.println("resultado: " + resultado);
+                tokens[0] = String.valueOf(resultado);
+            }
             return Double.parseDouble(tokens[0]);
         }
 
@@ -97,6 +125,13 @@ public class CalcularOperacion {
                 String funcion = tokens[i].substring(0, indiceParentesis);
                 double numero = Double.parseDouble(tokens[i].substring(indiceParentesis + 1, tokens[i].length() - 1));
                 double resultado = calcularLogaritmo(funcion, numero);
+                tokens[i] = String.valueOf(resultado);
+            }
+            if (esRaiz(tokens[i])) {
+                int indiceParentesis = tokens[i].indexOf('(');
+                String funcion = tokens[i].substring(0, indiceParentesis);
+                double numero = Double.parseDouble(tokens[i].substring(indiceParentesis + 1, tokens[i].length() - 1));
+                double resultado = calcularRaiz(funcion, numero);
                 tokens[i] = String.valueOf(resultado);
             }
         }
@@ -152,6 +187,9 @@ public class CalcularOperacion {
             case "^":
                 operandos.push(OperacionAlgebraica.potencia(numero1, numero2));
                 break;
+            case "Mod":
+                operandos.push(OperacionAlgebraica.mod(numero1, numero2));
+                break;
             default:
                 throw new IllegalArgumentException("Operador no válido: " + operador);
         }
@@ -168,8 +206,8 @@ public class CalcularOperacion {
 
     private boolean esFuncionTrigonometrica(String cadena) {
         return cadena.contains("sen") || cadena.contains("cos") || cadena.contains("tan") ||
-               cadena.contains("cot") || cadena.contains("sec") || cadena.contains("csc") ||
-               cadena.contains("arcSen") || cadena.contains("arcCos") || cadena.contains("arcTan");
+                cadena.contains("cot") || cadena.contains("sec") || cadena.contains("csc") ||
+                cadena.contains("arcSen") || cadena.contains("arcCos") || cadena.contains("arcTan");
     }
 
     private double calcularFuncionTrigonometrica(String funcion, double angulo) {
@@ -204,6 +242,7 @@ public class CalcularOperacion {
                 return 1;
             case "x":
             case "÷":
+            case "Mod": 
                 return 2;
             case "^":
                 return 3;
@@ -211,6 +250,7 @@ public class CalcularOperacion {
                 throw new IllegalArgumentException("Operador no válido: " + operador);
         }
     }
+
     private double redondearResultado(double resultado) {
         String resultadoStr = String.valueOf(resultado);
         if (resultadoStr.matches(".*9999+.*")) {
@@ -235,6 +275,28 @@ public class CalcularOperacion {
                 throw new IllegalArgumentException("Logaritmo no válido: " + funcion);
         }
     }
-}
 
+    private boolean esRaiz(String cadena) {
+        return cadena.contains("√") || cadena.contains("r");
+    }
+
+    private double calcularRaiz(String funcion, double numero) {
+    // Verificar si la función contiene el símbolo de raíz y un número como índice
+    
+    if (funcion.contains("√")) {
+        // Obtener el índice después del símbolo de raíz (√)
+        
+        int indiceParentesis = funcion.indexOf('√');
+        // Si hay más caracteres después del símbolo de raíz
+        if (indiceParentesis > 0) {
+            // Obtener el índice como un número después del símbolo de raíz
+            double indice = Double.parseDouble(funcion.substring(0,indiceParentesis));
+            // Calcular la raíz con el índice proporcionado
+            return OperacionAlgebraica.raiz(numero, indice);
+        }
+    }
+    // Si no hay un número después del símbolo de raíz, usar 2 como índice por defecto
+    return OperacionAlgebraica.raiz(numero, 2);
+}
+}
 

@@ -8,6 +8,10 @@ public class OperacionAlgebraica {
     public static double suma(double numero1, double numero2) {
         return numero1 + numero2;
     }
+    
+    public static double mod(double numero1,double numero2){
+        return numero1 % numero2;
+    }
 
     // Método para calcular la resta de dos números
     public static double resta(double numero1, double numero2) {

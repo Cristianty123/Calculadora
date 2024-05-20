@@ -8,9 +8,12 @@ public class Cientifica extends javax.swing.JPanel {
     
     private CalculadoraControlador controlador;
     private DefaultListModel<String> historialModel = new DefaultListModel();
-    private boolean igual = false;
+    private boolean igual = true;
     private boolean operacionBolean = false;
     private boolean operador = false;
+    private boolean parentesis = false;
+    private int contadorParentesis = 0;
+    private String numeroAnterior = "0";
 
     public Cientifica(CalculadoraControlador controlador) {
         this.controlador = controlador;
@@ -44,26 +47,95 @@ public class Cientifica extends javax.swing.JPanel {
         }
     }
     return 0; // Si no se encuentra espacio o paréntesis, insertar al principio
-}
+    }
+    private void manejarOperacion(String operacion) {
+       String textoOperaciones = operaciones.getText();
+       String textoVistaOperaciones = vistaOperaciones.getText();
+
+       if (!igual && !operacionBolean) {
+           // Eliminar los ceros después de la coma si existen
+           try {
+               textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
+               String textoMostrar = String.valueOf(controlador.calcularOperacion(operacion + "(" + textoOperaciones + ")"));
+               textoMostrar = textoMostrar.replace(".", ",");
+               operaciones.setText(textoMostrar);
+               vistaOperaciones.setText(textoVistaOperaciones + operacion + "(" + textoOperaciones + ")");
+            } catch (ArithmeticException e) {
+                operaciones.setText(e.getMessage());
+                igual = true;
+            }
+        operacionBolean = true;
+        operador = false;
+        } else if (operacionBolean && !igual) {
+            int posicionInsercion = encontrarPosicionInsercion(textoVistaOperaciones);
+            String nuevoTextoVistaOperaciones = textoVistaOperaciones.substring(0, posicionInsercion) + operacion + "(" + textoVistaOperaciones.substring(posicionInsercion) + ")";
+            vistaOperaciones.setText(nuevoTextoVistaOperaciones);
+        }
+    }
     private void botonNumeroActionPerformed(java.awt.event.ActionEvent evt, String numero) {
     String textoOperaciones = operaciones.getText();
     if (textoOperaciones.length() != 40) {
         if (textoOperaciones.equals("0")) {
             operaciones.setText(numero);
+            igual = false;
             operador = false;
         } else if (igual == true) {
             operaciones.setText(numero);
             vistaOperaciones.setText("");
             igual = false;
             operacionBolean = false;
+            
         } else if (operador == true) {
             operaciones.setText(numero);
             operador = false;
         } else {
             operaciones.setText(textoOperaciones + numero);
         }
-    }
+        parentesis = false;
+    } 
 }
+    private void igualarActionPerformed(java.awt.event.ActionEvent evt){
+        String textoVistaOperaciones = vistaOperaciones.getText();
+        String textoOperaciones = operaciones.getText();
+        
+        if(igual == false){
+        String operacion = "";
+        if(operacionBolean == true){
+          operacion = textoVistaOperaciones;  
+        }else{
+          if(textoVistaOperaciones.endsWith(")")){
+              operacion = textoVistaOperaciones;
+          }else{
+              operacion = textoVistaOperaciones + textoOperaciones;
+          }
+        }
+        try {
+           while(contadorParentesis != 0){
+               operacion = operacion + ")";
+               contadorParentesis--;
+           }
+           String resultado = String.valueOf(controlador.calcularOperacion(operacion));
+           resultado = resultado.replace(".",",");
+           System.out.println("pase2");
+        
+           operaciones.setText(resultado);
+           System.out.println("pase3");
+           vistaOperaciones.setText(operacion + " = " + resultado);
+           System.out.println("pase4");
+           if (historialModel.getSize() == 1 && historialModel.getElementAt(0).equals("No hay historial todavía")) {
+               historialModel.removeAllElements();
+            }
+            historialModel.addElement(operacion + " = " + resultado);
+            numeroAnterior = resultado;
+        } catch (ArithmeticException e) {
+            operaciones.setText(e.getMessage());
+        }
+    
+        igual = true;
+        operador = false;
+        contadorParentesis = 0;
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -176,7 +248,7 @@ public class Cientifica extends javax.swing.JPanel {
             }
         });
 
-        botonIgual.setBackground(new java.awt.Color(0, 90, 158));
+        botonIgual.setBackground(new java.awt.Color(131, 169, 192));
         botonIgual.setText("=");
         botonIgual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,7 +326,7 @@ public class Cientifica extends javax.swing.JPanel {
             }
         });
 
-        botonEliminar.setBackground(new java.awt.Color(255, 51, 0));
+        botonEliminar.setBackground(new java.awt.Color(255, 105, 98));
         botonEliminar.setText("DEL");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,7 +362,7 @@ public class Cientifica extends javax.swing.JPanel {
             }
         });
 
-        botonEliminarTodo.setBackground(new java.awt.Color(255, 51, 0));
+        botonEliminarTodo.setBackground(new java.awt.Color(255, 105, 98));
         botonEliminarTodo.setText("AC");
         botonEliminarTodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,7 +398,7 @@ public class Cientifica extends javax.swing.JPanel {
             }
         });
 
-        botonCualquierRaiz.setText("y√x");
+        botonCualquierRaiz.setText("3√x");
         botonCualquierRaiz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCualquierRaizActionPerformed(evt);
@@ -568,7 +640,7 @@ public class Cientifica extends javax.swing.JPanel {
                         .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(botonAns, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -634,20 +706,29 @@ public class Cientifica extends javax.swing.JPanel {
                     .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonDividir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonLogaritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonSumar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonLogaritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonSumar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonLogaritmoNatural, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonComa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAns, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonLogaritmoNatural, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonComa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonAns, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jLabelHistorial)
@@ -694,7 +775,7 @@ public class Cientifica extends javax.swing.JPanel {
     }//GEN-LAST:event_boton3ActionPerformed
 
     private void botonAnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnsActionPerformed
-        // TODO add your handling code here:
+        botonNumeroActionPerformed(evt, numeroAnterior);
     }//GEN-LAST:event_botonAnsActionPerformed
 
     private void botonComaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComaActionPerformed
@@ -711,49 +792,20 @@ public class Cientifica extends javax.swing.JPanel {
     }//GEN-LAST:event_botonComaActionPerformed
 
     private void botonIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIgualActionPerformed
-        String textoVistaOperaciones = vistaOperaciones.getText();
-        String textoOperaciones = operaciones.getText();
-        
-        if(igual == false){
-        String operacion = "";
-        if(operacionBolean == true){
-          operacion = textoVistaOperaciones;  
-        }else{
-          operacion = textoVistaOperaciones + textoOperaciones;
-        }
-        
-    
-        try {
-           String resultado = String.valueOf(controlador.calcularOperacion(operacion));
-           resultado = resultado.replace(".",",");
-           System.out.println("pase2");
-        
-           operaciones.setText(resultado);
-           System.out.println("pase3");
-           vistaOperaciones.setText(operacion + " = " + resultado);
-           System.out.println("pase4");
-           if (historialModel.getSize() == 1 && historialModel.getElementAt(0).equals("No hay historial todavía")) {
-               historialModel.removeAllElements();
-            }
-            historialModel.addElement(operacion + " = " + resultado);
-        } catch (ArithmeticException e) {
-            operaciones.setText(e.getMessage());
-        }
-    
-        igual = true;
-        }
+        igualarActionPerformed(evt);
     }//GEN-LAST:event_botonIgualActionPerformed
 
     private void botonSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSumarActionPerformed
         String textoOperaciones = operaciones.getText();
         String textoVistaOperaciones = vistaOperaciones.getText();
         
-        System.out.println(operador);
         if(!textoOperaciones.equals("0") && igual == false && operador == false){
            // Eliminar los ceros después de la coma si existen
            if(operacionBolean == true){
                vistaOperaciones.setText(textoVistaOperaciones  + " + ");
                operacionBolean = false;
+           }else if(textoVistaOperaciones.endsWith(")")){
+               vistaOperaciones.setText(textoVistaOperaciones  + " + ");
            }else{
            textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
            vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " + ");
@@ -800,6 +852,8 @@ public class Cientifica extends javax.swing.JPanel {
             if(operacionBolean == true){
                vistaOperaciones.setText(textoVistaOperaciones  + " x ");
                operacionBolean = false;
+           }else if(textoVistaOperaciones.endsWith(")")){
+               vistaOperaciones.setText(textoVistaOperaciones  + " x ");
            }else{
            // Eliminar los ceros después de la coma si existen
            textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
@@ -818,8 +872,10 @@ public class Cientifica extends javax.swing.JPanel {
         
         if(!textoOperaciones.equals("0")&& igual == false && operador == false){
             if(operacionBolean == true){
-               vistaOperaciones.setText(textoVistaOperaciones  + " + ");
+               vistaOperaciones.setText(textoVistaOperaciones  + " ÷ ");
                operacionBolean = false;
+           }else if(textoVistaOperaciones.endsWith(")")){
+               vistaOperaciones.setText(textoVistaOperaciones  + " ÷ ");
            }else{
            // Eliminar los ceros después de la coma si existen
            textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
@@ -830,7 +886,6 @@ public class Cientifica extends javax.swing.JPanel {
            vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " ÷ ");
            operador = true;
         }
-        
     }//GEN-LAST:event_botonDividirActionPerformed
 
     private void botonRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRestarActionPerformed
@@ -840,8 +895,10 @@ public class Cientifica extends javax.swing.JPanel {
         if(!textoOperaciones.equals("0")&& igual == false && operador == false){
             
             if(operacionBolean == true){
-               vistaOperaciones.setText(textoVistaOperaciones  + " + ");
+               vistaOperaciones.setText(textoVistaOperaciones  + " - ");
                operacionBolean = false;
+           }else if(textoVistaOperaciones.endsWith(")")){
+               vistaOperaciones.setText(textoVistaOperaciones  + " - ");
            }else{
            // Eliminar los ceros después de la coma si existen
            textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
@@ -862,56 +919,17 @@ public class Cientifica extends javax.swing.JPanel {
         
         if(textoOperaciones.length()== 1){
             operaciones.setText("0");
-        }else{
+        }else if(textoOperaciones.length() != 1 && !operacionBolean){
             operaciones.setText(textoOperaciones.substring(0,textoOperaciones.length()-1));
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonLogaritmoNaturalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLogaritmoNaturalActionPerformed
-         String textoOperaciones = operaciones.getText();
-    String textoVistaOperaciones = vistaOperaciones.getText();
-
-    if (!igual && !operacionBolean) {
-        // Eliminar los ceros después de la coma si existen
-        try {
-            textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
-            String textoMostrar = String.valueOf(controlador.calcularOperacion("ln(" + textoOperaciones + ")"));
-            textoMostrar = textoMostrar.replace(".", ",");
-            operaciones.setText(textoMostrar);
-            vistaOperaciones.setText(textoVistaOperaciones + "ln(" + textoOperaciones + ")");
-        } catch (ArithmeticException e) {
-            operaciones.setText(e.getMessage());
-            igual = true;
-        }
-        operacionBolean = true;
-        operador = false;
-    }else if (operacionBolean) {
-        int posicionInsercion = encontrarPosicionInsercion(textoVistaOperaciones);
-        String nuevoTextoVistaOperaciones = textoVistaOperaciones.substring(0, posicionInsercion) + "ln(" + textoVistaOperaciones.substring(posicionInsercion) + ")";
-        vistaOperaciones.setText(nuevoTextoVistaOperaciones);
-    }
+        manejarOperacion("ln");
     }//GEN-LAST:event_botonLogaritmoNaturalActionPerformed
 
     private void botonLogaritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLogaritmoActionPerformed
-        String textoOperaciones = operaciones.getText();
-    String textoVistaOperaciones = vistaOperaciones.getText();
-
-    if (!igual && !operacionBolean) {
-        // Eliminar los ceros después de la coma si existen
-        textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
-        String textoMostrar = String.valueOf(controlador.calcularOperacion("log(" + textoOperaciones + ")"));
-        textoMostrar = textoMostrar.replace(".", ",");
-        operaciones.setText(textoMostrar);
-        vistaOperaciones.setText(textoVistaOperaciones + "log(" + textoOperaciones + ")");
-        operacionBolean = true;
-        operador = false;
-    }else if (operacionBolean) {
-        int posicionInsercion = encontrarPosicionInsercion(textoVistaOperaciones);
-        System.out.println("la posicion es " +posicionInsercion);
-        String nuevoTextoVistaOperaciones = textoVistaOperaciones.substring(0, posicionInsercion) + "log(" + textoVistaOperaciones.substring(posicionInsercion) + ")";
-        System.out.println("el texto es " +posicionInsercion);
-        vistaOperaciones.setText(nuevoTextoVistaOperaciones);
-    } 
+         manejarOperacion("log");
     }//GEN-LAST:event_botonLogaritmoActionPerformed
 
     private void botonElevarCuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonElevarCuadradoActionPerformed
@@ -959,20 +977,76 @@ public class Cientifica extends javax.swing.JPanel {
     private void botonEliminarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarTodoActionPerformed
         if(operaciones.getText().equals("0")){
             vistaOperaciones.setText("");
-            igual = false;
+            igual = true;
             operacionBolean = false;
             operador = false;
-        }
+            contadorParentesis = 0;
+        }if(operacionBolean){
+            igualarActionPerformed(evt);
+        }else{
         operaciones.setText("0");
+        }
     }//GEN-LAST:event_botonEliminarTodoActionPerformed
 
     private void botonAbrirParentesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirParentesisActionPerformed
         String textoVistaOperaciones = vistaOperaciones.getText();
-        String textoOperaciones = operaciones.getText();
+String textoOperaciones = operaciones.getText();
+
+
+if (igual) {
+    vistaOperaciones.setText(textoVistaOperaciones + "(");
+    contadorParentesis++;
+    System.out.println("1");
+}else if(igual && textoVistaOperaciones.contains("=")){
+    vistaOperaciones.setText("(");
+}else {
+    if (textoVistaOperaciones.isEmpty()) {
+        vistaOperaciones.setText(textoOperaciones + " x (");
+        contadorParentesis++;
+        parentesis = true;
+        operador = true;
+        System.out.println("2");
+    } else {
+        char ultimoCaracter = textoVistaOperaciones.charAt(textoVistaOperaciones.length() - 1);
+        System.out.println(ultimoCaracter);
+        if (ultimoCaracter == '(' && parentesis) {
+            vistaOperaciones.setText(textoVistaOperaciones + "(");
+            contadorParentesis++;
+            System.out.println("3");
+        } else if (operador && ultimoCaracter != '(' && ultimoCaracter != ')') {
+            vistaOperaciones.setText(textoVistaOperaciones + "(");
+            parentesis = true;
+            contadorParentesis++;
+            System.out.println("4");
+        } else if (ultimoCaracter == ')'){
+            vistaOperaciones.setText(textoVistaOperaciones + " x (");
+            contadorParentesis++;
+            parentesis = true;
+            operador = true;
+            System.out.println("5");
+        }else {
+            vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " x (");
+            operador = true;
+            parentesis = true;
+            contadorParentesis++;
+            System.out.println("6");
+        }
+    }
+}
+
     }//GEN-LAST:event_botonAbrirParentesisActionPerformed
 
     private void botonCerrarParentesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarParentesisActionPerformed
-        // TODO add your handling code here:
+        if(contadorParentesis != 0){
+            String textoVistaOperaciones = vistaOperaciones.getText();
+            if(textoVistaOperaciones.endsWith("(") || operador || textoVistaOperaciones.endsWith(" ")){
+               vistaOperaciones.setText(textoVistaOperaciones + operaciones.getText() + ")");
+               operador = false;
+            }else{
+               vistaOperaciones.setText(textoVistaOperaciones + ")");
+            }
+            contadorParentesis--;
+        }
     }//GEN-LAST:event_botonCerrarParentesisActionPerformed
 
     private void botonCambiarNegativoPositivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarNegativoPositivoActionPerformed
@@ -990,59 +1064,127 @@ public class Cientifica extends javax.swing.JPanel {
     }//GEN-LAST:event_botonCambiarNegativoPositivoActionPerformed
 
     private void botonRaizCuadradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRaizCuadradaActionPerformed
-        // TODO add your handling code here:
+        manejarOperacion("√");
     }//GEN-LAST:event_botonRaizCuadradaActionPerformed
-
+        
     private void botonCualquierRaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCualquierRaizActionPerformed
-        // TODO add your handling code here:
+        manejarOperacion("3√"); 
     }//GEN-LAST:event_botonCualquierRaizActionPerformed
 
     private void botonEulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEulerActionPerformed
-        // TODO add your handling code here:
+        String textoVistaOperaciones = vistaOperaciones.getText();
+
+       if (!igual && !operacionBolean ) {
+           // Eliminar los ceros después de la coma si existen
+           String textoMostrar = String.valueOf(Math.E);
+           textoMostrar = textoMostrar.replace(".", ",");
+           operaciones.setText(textoMostrar);
+           vistaOperaciones.setText(textoVistaOperaciones + "e");
+           operacionBolean = true;
+           operador = false;
+        }else if(!igual && textoVistaOperaciones.endsWith("π")){
+            String textoMostrar = String.valueOf(Math.E);
+            textoMostrar = textoMostrar.replace(".", ",");
+            operaciones.setText(textoMostrar);
+            String nuevoTextoVistaOperaciones = textoVistaOperaciones.substring(0,textoVistaOperaciones.length() - 1) + "e";
+            vistaOperaciones.setText(nuevoTextoVistaOperaciones);
+            operacionBolean = true;
+            operador = false;
+         }else if(igual == true){
+            String textoMostrar = String.valueOf(Math.E);
+            textoMostrar = textoMostrar.replace(".", ",");
+            operaciones.setText(textoMostrar);
+            vistaOperaciones.setText("e");
+            igual = false;
+            operacionBolean = true;
+        }      
     }//GEN-LAST:event_botonEulerActionPerformed
 
     private void botonPiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPiActionPerformed
-        // TODO add your handling code here:
+        String textoVistaOperaciones = vistaOperaciones.getText();
+
+       if (!igual && !operacionBolean) {
+           // Eliminar los ceros después de la coma si existen
+           String textoMostrar = String.valueOf(Math.PI);
+           textoMostrar = textoMostrar.replace(".", ",");
+           operaciones.setText(textoMostrar);
+           vistaOperaciones.setText(textoVistaOperaciones + "π");
+           operacionBolean = true;
+           operador = false;
+        }else if(!igual && textoVistaOperaciones.endsWith("e")){
+            String textoMostrar = String.valueOf(Math.PI);
+            textoMostrar = textoMostrar.replace(".", ",");
+            operaciones.setText(textoMostrar);
+            String nuevoTextoVistaOperaciones = textoVistaOperaciones.substring(0,textoVistaOperaciones.length() - 1) + "π";
+            vistaOperaciones.setText(nuevoTextoVistaOperaciones);
+            operacionBolean = true;
+            operador = false;
+         }else if(igual == true){
+            String textoMostrar = String.valueOf(Math.PI);
+            textoMostrar = textoMostrar.replace(".", ",");
+            operaciones.setText(textoMostrar);
+            vistaOperaciones.setText("π");
+            igual = false;
+            operacionBolean = true;
+        } 
     }//GEN-LAST:event_botonPiActionPerformed
 
     private void botonSenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSenoActionPerformed
-        // TODO add your handling code here:
+        manejarOperacion("sen");
     }//GEN-LAST:event_botonSenoActionPerformed
 
     private void botonCosenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCosenoActionPerformed
-        // TODO add your handling code here:
+        manejarOperacion("cos");
     }//GEN-LAST:event_botonCosenoActionPerformed
 
     private void botonTangenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTangenteActionPerformed
-        // TODO add your handling code here:
+        manejarOperacion("tan");
     }//GEN-LAST:event_botonTangenteActionPerformed
 
     private void botonArcSenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArcSenoActionPerformed
-        // TODO add your handling code here:
+        manejarOperacion("arcSen");
     }//GEN-LAST:event_botonArcSenoActionPerformed
 
     private void botonArcCosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArcCosActionPerformed
-        // TODO add your handling code here:
+        manejarOperacion("arcCos");
     }//GEN-LAST:event_botonArcCosActionPerformed
 
     private void botonArcTanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArcTanActionPerformed
-        // TODO add your handling code here:
+        manejarOperacion("arcTan");
     }//GEN-LAST:event_botonArcTanActionPerformed
 
     private void botonCotangenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCotangenteActionPerformed
-        // TODO add your handling code here:
+        manejarOperacion("cot");
     }//GEN-LAST:event_botonCotangenteActionPerformed
 
     private void botonSecanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSecanteActionPerformed
-        // TODO add your handling code here:
+        manejarOperacion("sec");
     }//GEN-LAST:event_botonSecanteActionPerformed
 
     private void botonCosecanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCosecanteActionPerformed
-        // TODO add your handling code here:
+        manejarOperacion("csc");
     }//GEN-LAST:event_botonCosecanteActionPerformed
 
     private void botonModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModActionPerformed
-        // TODO add your handling code here:
+        String textoOperaciones = operaciones.getText();
+        String textoVistaOperaciones = vistaOperaciones.getText();
+        
+        if(!textoOperaciones.equals("0")&& igual == false && operador == false){
+            if(operacionBolean == true){
+               vistaOperaciones.setText(textoVistaOperaciones  + " Mod ");
+               operacionBolean = false;
+           }else if(textoVistaOperaciones.endsWith(")")){
+               vistaOperaciones.setText(textoVistaOperaciones  + " Mod ");
+           }else{
+           // Eliminar los ceros después de la coma si existen
+           textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
+           vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " Mod ");
+           }
+           operador = true;
+        }else if(textoOperaciones.equals("0") && operador == false && !textoVistaOperaciones.isEmpty()){
+           vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " Mod ");
+           operador = true;
+        }
     }//GEN-LAST:event_botonModActionPerformed
 
     private void botonModoDegORadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModoDegORadActionPerformed

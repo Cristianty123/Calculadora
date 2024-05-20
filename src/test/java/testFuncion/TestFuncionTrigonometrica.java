@@ -21,11 +21,13 @@ public class TestFuncionTrigonometrica {
     public void testSeno() {
         //Pruebas en grados
         assertEquals((double)1/2,funcionTrigonometrica.seno(30),0.0001);
+        
         assertEquals((Math.sqrt(2))/2,funcionTrigonometrica.seno(45),0.0001);
         assertEquals((Math.sqrt(3))/2,funcionTrigonometrica.seno(60),0.0001);
         
         //Pruebas en radianes
         funcionTrigonometrica.setModo(Modo.RADIANES);
+        assertEquals(0,funcionTrigonometrica.seno(Math.PI),0.0001);
         assertEquals((double) 1/2, funcionTrigonometrica.seno(Math.toRadians(30)), 0.0001);
         assertEquals((Math.sqrt(2))/2, funcionTrigonometrica.seno(Math.toRadians(45)), 0.0001);
         assertEquals((Math.sqrt(3))/2, funcionTrigonometrica.seno(Math.toRadians(60)), 0.0001);

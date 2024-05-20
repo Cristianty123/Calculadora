@@ -149,7 +149,7 @@ public class Convercion extends javax.swing.JPanel {
         botonComa.setEnabled(false);
         add(botonComa, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 452, 138, 38));
 
-        botonIgual.setBackground(new java.awt.Color(0, 90, 158));
+        botonIgual.setBackground(new java.awt.Color(131, 169, 192));
         botonIgual.setText("=");
         add(botonIgual, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 452, 138, 38));
 
@@ -238,11 +238,11 @@ public class Convercion extends javax.swing.JPanel {
         botonAbrirParentesis.setText("(");
         add(botonAbrirParentesis, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 252, 138, 38));
 
-        botonEliminarTodo.setBackground(new java.awt.Color(255, 51, 0));
+        botonEliminarTodo.setBackground(new java.awt.Color(255, 105, 98));
         botonEliminarTodo.setText("AC");
         add(botonEliminarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 202, 138, 38));
 
-        botonEliminar.setBackground(new java.awt.Color(255, 51, 0));
+        botonEliminar.setBackground(new java.awt.Color(255, 105, 98));
         botonEliminar.setText("DEL");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

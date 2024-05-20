@@ -65,7 +65,7 @@
     <Component class="javax.swing.JButton" name="botonIgual">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="9e" green="5a" red="0" type="rgb"/>
+          <Color blue="c0" green="a9" red="83" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="="/>
       </Properties>
@@ -293,7 +293,7 @@
     <Component class="javax.swing.JButton" name="botonEliminarTodo">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="33" red="ff" type="rgb"/>
+          <Color blue="62" green="69" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="AC"/>
       </Properties>
@@ -306,7 +306,7 @@
     <Component class="javax.swing.JButton" name="botonEliminar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="33" red="ff" type="rgb"/>
+          <Color blue="62" green="69" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="DEL"/>
       </Properties>

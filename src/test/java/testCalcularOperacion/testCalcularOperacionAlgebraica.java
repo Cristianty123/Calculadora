@@ -23,6 +23,8 @@ public class testCalcularOperacionAlgebraica {
     public void testCalcularOperacionesAlgebraicas(){
         
         assertEquals(8.4,calcularOperacion.calcular("6 + 3 ÷ 5 x 9 - 3"));
+        assertEquals(6.718281,calcularOperacion.calcular("4 + e"),0.001);
+        assertEquals(1.570796327,calcularOperacion.calcular("π ÷ 2"),0.001);
         assertEquals(6561,calcularOperacion.calcular("9 ^ 2 ^ 2"));
         assertEquals(9,calcularOperacion.calcular("6,6 + 3 ÷ 5 x 9 - 3"));
         assertEquals(40,calcularOperacion.calcular("5 ^ 2 + 6 + 9"));
@@ -61,6 +63,19 @@ public class testCalcularOperacionAlgebraica {
         assertThrows(ArithmeticException.class, () -> {
             calcularOperacion.calcular("ln(0)");
         });
+    }
+
+    
+    @Test
+    public void testCalcularRaiz(){
+        assertEquals(6.58 ,calcularOperacion.calcular("5 + (3√(4))"),0.01);
+        assertEquals(5 ,calcularOperacion.calcular("√(25)"),0.01);
+        assertEquals(1.49 ,calcularOperacion.calcular("√(√(√(25)))"),0.01);
+    }
+    
+    @Test
+    public void testCalcularMod(){
+        assertEquals(5 ,calcularOperacion.calcular("5 Mod 9"),0.01);
     }
    
     

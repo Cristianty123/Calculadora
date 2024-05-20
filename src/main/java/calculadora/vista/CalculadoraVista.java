@@ -31,6 +31,7 @@ public class CalculadoraVista extends javax.swing.JFrame {
         this.controlador = controlador;
         this.cientifica = new Cientifica(controlador);
         setForm(cientifica);
+        setSelectedPanel(jPanelCientifica);
     }
     private void setForm(JComponent com) {
         mainPanel.removeAll();
@@ -268,7 +269,7 @@ public class CalculadoraVista extends javax.swing.JFrame {
                 .addComponent(jLabelCorte))
         );
 
-        jPanelSalir.setBackground(new java.awt.Color(255, 51, 0));
+        jPanelSalir.setBackground(new java.awt.Color(255, 105, 98));
         jPanelSalir.setForeground(new java.awt.Color(255, 255, 255));
         jPanelSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanelSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -504,11 +505,11 @@ public class CalculadoraVista extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelSalirMouseClicked
 
     private void jPanelSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelSalirMouseEntered
-        jPanelSalir.setBackground(new java.awt.Color(204, 0, 0));
+        jPanelSalir.setBackground(new java.awt.Color(255,51,0));
     }//GEN-LAST:event_jPanelSalirMouseEntered
 
     private void jPanelSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelSalirMouseExited
-        jPanelSalir.setBackground(new java.awt.Color(255,51,0));
+        jPanelSalir.setBackground(new java.awt.Color(255,105,98));
     }//GEN-LAST:event_jPanelSalirMouseExited
 
     
