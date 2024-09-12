@@ -1,4 +1,4 @@
-package calculadora.model.estructuras.node.syngly;
+package estructuras.node.syngly;
 
 
 public class LinkedNode<E> {

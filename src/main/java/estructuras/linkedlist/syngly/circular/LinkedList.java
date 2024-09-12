@@ -1,6 +1,6 @@
-package calculadora.model.estructuras.linkedlist.syngly.circular;
+package estructuras.linkedlist.syngly.circular;
 
-import calculadora.model.estructuras.node.syngly.LinkedNode;
+import estructuras.node.syngly.LinkedNode;
 import calculadora.util.iterator.Iterator;
 
 

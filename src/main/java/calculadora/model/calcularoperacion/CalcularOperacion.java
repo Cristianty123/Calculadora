@@ -2,9 +2,9 @@ package calculadora.model.calcularoperacion;
 
 import calculadora.model.operacion.reales.OperacionAlgebraica;
 import calculadora.model.operacion.reales.funcion.FuncionTrigonometrica;
+import estructuras.stack.Stack;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Stack;
 
 public class CalcularOperacion {
     private FuncionTrigonometrica funcionesTrigonometricas;

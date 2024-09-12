@@ -1,6 +1,6 @@
-package calculadora.model.estructuras.stack;
+package estructuras.stack;
 
-import calculadora.model.estructuras.linkedlist.syngly.circular.LinkedList;
+import estructuras.linkedlist.syngly.circular.LinkedList;
 import calculadora.util.iterator.Iterator;
 
 public class Stack<E> {
