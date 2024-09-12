@@ -161,33 +161,12 @@ public class Cientifica extends javax.swing.JPanel {
         botonDividir = new javax.swing.JButton();
         botonRestar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
-        botonLogaritmo = new javax.swing.JButton();
-        botonLogaritmoNatural = new javax.swing.JButton();
-        botonElevarCuadrado = new javax.swing.JButton();
-        botonElevarCualquierNumero = new javax.swing.JButton();
         botonEliminarTodo = new javax.swing.JButton();
         botonAbrirParentesis = new javax.swing.JButton();
         botonCerrarParentesis = new javax.swing.JButton();
         botonCambiarNegativoPositivo = new javax.swing.JButton();
-        botonRaizCuadrada = new javax.swing.JButton();
-        botonCualquierRaiz = new javax.swing.JButton();
         botonEuler = new javax.swing.JButton();
         botonPi = new javax.swing.JButton();
-        botonSeno = new javax.swing.JButton();
-        botonCoseno = new javax.swing.JButton();
-        botonTangente = new javax.swing.JButton();
-        botonArcSeno = new javax.swing.JButton();
-        botonArcCos = new javax.swing.JButton();
-        botonArcTan = new javax.swing.JButton();
-        botonCotangente = new javax.swing.JButton();
-        botonSecante = new javax.swing.JButton();
-        botonCosecante = new javax.swing.JButton();
-        botonMod = new javax.swing.JButton();
-        botonModoDegORad = new javax.swing.JButton();
-        botonVariableX = new javax.swing.JButton();
-        botonVariableY = new javax.swing.JButton();
-        botonVariableZ = new javax.swing.JButton();
-        botonPorcentaje = new javax.swing.JButton();
         jLabelHistorial = new javax.swing.JLabel();
         vistaOperaciones = new javax.swing.JTextField();
 
@@ -334,34 +313,6 @@ public class Cientifica extends javax.swing.JPanel {
             }
         });
 
-        botonLogaritmo.setText("Log");
-        botonLogaritmo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonLogaritmoActionPerformed(evt);
-            }
-        });
-
-        botonLogaritmoNatural.setText("Ln");
-        botonLogaritmoNatural.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonLogaritmoNaturalActionPerformed(evt);
-            }
-        });
-
-        botonElevarCuadrado.setText("x^2");
-        botonElevarCuadrado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonElevarCuadradoActionPerformed(evt);
-            }
-        });
-
-        botonElevarCualquierNumero.setText("x^y");
-        botonElevarCualquierNumero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonElevarCualquierNumeroActionPerformed(evt);
-            }
-        });
-
         botonEliminarTodo.setBackground(new java.awt.Color(255, 105, 98));
         botonEliminarTodo.setText("AC");
         botonEliminarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -391,20 +342,6 @@ public class Cientifica extends javax.swing.JPanel {
             }
         });
 
-        botonRaizCuadrada.setText("√x");
-        botonRaizCuadrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRaizCuadradaActionPerformed(evt);
-            }
-        });
-
-        botonCualquierRaiz.setText("3√x");
-        botonCualquierRaiz.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCualquierRaizActionPerformed(evt);
-            }
-        });
-
         botonEuler.setText("e");
         botonEuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -416,111 +353,6 @@ public class Cientifica extends javax.swing.JPanel {
         botonPi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonPiActionPerformed(evt);
-            }
-        });
-
-        botonSeno.setText("Sen(θ)");
-        botonSeno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSenoActionPerformed(evt);
-            }
-        });
-
-        botonCoseno.setText("Cos(θ)");
-        botonCoseno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCosenoActionPerformed(evt);
-            }
-        });
-
-        botonTangente.setText("Tan(θ)");
-        botonTangente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonTangenteActionPerformed(evt);
-            }
-        });
-
-        botonArcSeno.setText("ArcSen(x)");
-        botonArcSeno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonArcSenoActionPerformed(evt);
-            }
-        });
-
-        botonArcCos.setText("ArcCos(x)");
-        botonArcCos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonArcCosActionPerformed(evt);
-            }
-        });
-
-        botonArcTan.setText("ArcTan(x)");
-        botonArcTan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonArcTanActionPerformed(evt);
-            }
-        });
-
-        botonCotangente.setText("CoTan(θ)");
-        botonCotangente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCotangenteActionPerformed(evt);
-            }
-        });
-
-        botonSecante.setText("Sec(θ)");
-        botonSecante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSecanteActionPerformed(evt);
-            }
-        });
-
-        botonCosecante.setText("CoSec(θ)");
-        botonCosecante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCosecanteActionPerformed(evt);
-            }
-        });
-
-        botonMod.setText("Mod");
-        botonMod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonModActionPerformed(evt);
-            }
-        });
-
-        botonModoDegORad.setText("Deg");
-        botonModoDegORad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonModoDegORadActionPerformed(evt);
-            }
-        });
-
-        botonVariableX.setText("X");
-        botonVariableX.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonVariableXActionPerformed(evt);
-            }
-        });
-
-        botonVariableY.setText("Y");
-        botonVariableY.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonVariableYActionPerformed(evt);
-            }
-        });
-
-        botonVariableZ.setText("Z");
-        botonVariableZ.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonVariableZActionPerformed(evt);
-            }
-        });
-
-        botonPorcentaje.setText("%");
-        botonPorcentaje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonPorcentajeActionPerformed(evt);
             }
         });
 
@@ -545,56 +377,9 @@ public class Cientifica extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(operaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(vistaOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonVariableX, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonVariableY, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonVariableZ, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonModoDegORad, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonArcSeno, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonArcCos, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonArcTan, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonMod, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonCosecante, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonSeno, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonCoseno, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonTangente, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonCotangente, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonSecante, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonCualquierRaiz, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonEuler, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonPi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonEliminarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonRaizCuadrada, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
                         .addComponent(botonAbrirParentesis, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(botonCerrarParentesis, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -603,8 +388,6 @@ public class Cientifica extends javax.swing.JPanel {
                         .addGap(12, 12, 12)
                         .addComponent(botonRestar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonElevarCualquierNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
                         .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(boton8, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -613,8 +396,6 @@ public class Cientifica extends javax.swing.JPanel {
                         .addGap(12, 12, 12)
                         .addComponent(botonMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonElevarCuadrado, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
                         .addComponent(boton4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -623,8 +404,6 @@ public class Cientifica extends javax.swing.JPanel {
                         .addGap(12, 12, 12)
                         .addComponent(botonDividir, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonLogaritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
                         .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -633,107 +412,88 @@ public class Cientifica extends javax.swing.JPanel {
                         .addGap(12, 12, 12)
                         .addComponent(botonSumar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonLogaritmoNatural, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
                         .addComponent(botonComa, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(botonAns, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(operaciones)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonEuler, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(botonPi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(botonEliminarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(vistaOperaciones))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                    .addComponent(jLabelHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabelHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(operaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(vistaOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonVariableX, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonVariableY, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonVariableZ, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonModoDegORad, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonArcSeno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonArcCos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonArcTan, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonMod, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCosecante, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonSeno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCoseno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonTangente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCotangente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonSecante, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonCualquierRaiz, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEuler, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonPi, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEliminarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonRaizCuadrada, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAbrirParentesis, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCerrarParentesis, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCambiarNegativoPositivo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonRestar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonElevarCualquierNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonElevarCuadrado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonDividir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(operaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonEuler, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonPi, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEliminarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonLogaritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonSumar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(botonAbrirParentesis, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonCerrarParentesis, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonCambiarNegativoPositivo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonRestar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonLogaritmoNatural, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonComa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonAns, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabelHistorial)
-                .addGap(3, 3, 3)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(boton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonDividir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonSumar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonComa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonAns, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(vistaOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelHistorial))
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1)))
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -924,56 +684,6 @@ public class Cientifica extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
-    private void botonLogaritmoNaturalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLogaritmoNaturalActionPerformed
-        manejarOperacion("ln");
-    }//GEN-LAST:event_botonLogaritmoNaturalActionPerformed
-
-    private void botonLogaritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLogaritmoActionPerformed
-         manejarOperacion("log");
-    }//GEN-LAST:event_botonLogaritmoActionPerformed
-
-    private void botonElevarCuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonElevarCuadradoActionPerformed
-        String textoOperaciones = operaciones.getText();
-        String textoVistaOperaciones = vistaOperaciones.getText();
-
-    if (!igual && !operacionBolean) {
-        // Eliminar los ceros después de la coma si existen
-        
-            textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
-            String textoMostrar = String.valueOf(controlador.calcularOperacion(textoOperaciones + " ^ 2"));
-            textoMostrar = textoMostrar.replace(".", ",");
-            operaciones.setText(textoMostrar);
-            vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " ^ 2");
-            operacionBolean = true;
-            operador = false;
-    }else if (operacionBolean) {
-        int posicionInsercion = encontrarPosicionInsercion(textoVistaOperaciones);
-        String nuevoTextoVistaOperaciones = textoVistaOperaciones.substring(0, posicionInsercion) + textoVistaOperaciones.substring(posicionInsercion) + " ^ 2";
-        vistaOperaciones.setText(nuevoTextoVistaOperaciones);
-    }
-    }//GEN-LAST:event_botonElevarCuadradoActionPerformed
-
-    private void botonElevarCualquierNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonElevarCualquierNumeroActionPerformed
-        String textoOperaciones = operaciones.getText();
-        String textoVistaOperaciones = vistaOperaciones.getText();
-        
-        System.out.println(operador);
-        if(!textoOperaciones.equals("0") && igual == false && operador == false){
-           // Eliminar los ceros después de la coma si existen
-           if(operacionBolean == true){
-               vistaOperaciones.setText(textoVistaOperaciones  + " ^ ");
-               operacionBolean = false;
-           }else{
-           textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
-           vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " ^ ");
-           }
-           operador = true;
-        }else if(textoOperaciones.equals("0") && operador == false && !textoVistaOperaciones.isEmpty()){
-           vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " ^ ");
-           operador = true;
-        }
-    }//GEN-LAST:event_botonElevarCualquierNumeroActionPerformed
-
     private void botonEliminarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarTodoActionPerformed
         if(operaciones.getText().equals("0")){
             vistaOperaciones.setText("");
@@ -1062,15 +772,7 @@ if (igual) {
             operaciones.setText(textoOperaciones);
         }
     }//GEN-LAST:event_botonCambiarNegativoPositivoActionPerformed
-
-    private void botonRaizCuadradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRaizCuadradaActionPerformed
-        manejarOperacion("√");
-    }//GEN-LAST:event_botonRaizCuadradaActionPerformed
         
-    private void botonCualquierRaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCualquierRaizActionPerformed
-        manejarOperacion("3√"); 
-    }//GEN-LAST:event_botonCualquierRaizActionPerformed
-
     private void botonEulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEulerActionPerformed
         String textoVistaOperaciones = vistaOperaciones.getText();
 
@@ -1129,93 +831,6 @@ if (igual) {
         } 
     }//GEN-LAST:event_botonPiActionPerformed
 
-    private void botonSenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSenoActionPerformed
-        manejarOperacion("sen");
-    }//GEN-LAST:event_botonSenoActionPerformed
-
-    private void botonCosenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCosenoActionPerformed
-        manejarOperacion("cos");
-    }//GEN-LAST:event_botonCosenoActionPerformed
-
-    private void botonTangenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTangenteActionPerformed
-        manejarOperacion("tan");
-    }//GEN-LAST:event_botonTangenteActionPerformed
-
-    private void botonArcSenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArcSenoActionPerformed
-        manejarOperacion("arcSen");
-    }//GEN-LAST:event_botonArcSenoActionPerformed
-
-    private void botonArcCosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArcCosActionPerformed
-        manejarOperacion("arcCos");
-    }//GEN-LAST:event_botonArcCosActionPerformed
-
-    private void botonArcTanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArcTanActionPerformed
-        manejarOperacion("arcTan");
-    }//GEN-LAST:event_botonArcTanActionPerformed
-
-    private void botonCotangenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCotangenteActionPerformed
-        manejarOperacion("cot");
-    }//GEN-LAST:event_botonCotangenteActionPerformed
-
-    private void botonSecanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSecanteActionPerformed
-        manejarOperacion("sec");
-    }//GEN-LAST:event_botonSecanteActionPerformed
-
-    private void botonCosecanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCosecanteActionPerformed
-        manejarOperacion("csc");
-    }//GEN-LAST:event_botonCosecanteActionPerformed
-
-    private void botonModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModActionPerformed
-        String textoOperaciones = operaciones.getText();
-        String textoVistaOperaciones = vistaOperaciones.getText();
-        
-        if(!textoOperaciones.equals("0")&& igual == false && operador == false){
-            if(operacionBolean == true){
-               vistaOperaciones.setText(textoVistaOperaciones  + " Mod ");
-               operacionBolean = false;
-           }else if(textoVistaOperaciones.endsWith(")")){
-               vistaOperaciones.setText(textoVistaOperaciones  + " Mod ");
-           }else{
-           // Eliminar los ceros después de la coma si existen
-           textoOperaciones = eliminarCerosDespuesComa(textoOperaciones);
-           vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " Mod ");
-           }
-           operador = true;
-        }else if(textoOperaciones.equals("0") && operador == false && !textoVistaOperaciones.isEmpty()){
-           vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " Mod ");
-           operador = true;
-        }
-    }//GEN-LAST:event_botonModActionPerformed
-
-    private void botonModoDegORadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModoDegORadActionPerformed
-        String textoBoton = botonModoDegORad.getText();
-    
-    // Verificar el texto actual y cambiar el modo y el texto del botón en consecuencia
-    if (textoBoton.equals("Deg")) {
-        controlador.cambiarModoFuncionTrigonometrica(Modo.RADIANES);
-        botonModoDegORad.setText("Rad");
-    } else if (textoBoton.equals("Rad")) {
-        controlador.cambiarModoFuncionTrigonometrica(Modo.DEG);
-        botonModoDegORad.setText("Deg");
-    }
-    }//GEN-LAST:event_botonModoDegORadActionPerformed
-
-    private void botonVariableXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVariableXActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonVariableXActionPerformed
-
-    private void botonVariableYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVariableYActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonVariableYActionPerformed
-
-    private void botonVariableZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVariableZActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonVariableZActionPerformed
-
-    private void botonPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPorcentajeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonPorcentajeActionPerformed
-
     private void vistaOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaOperacionesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_vistaOperacionesActionPerformed
@@ -1234,39 +849,18 @@ if (igual) {
     private javax.swing.JButton boton9;
     private javax.swing.JButton botonAbrirParentesis;
     private javax.swing.JButton botonAns;
-    private javax.swing.JButton botonArcCos;
-    private javax.swing.JButton botonArcSeno;
-    private javax.swing.JButton botonArcTan;
     private javax.swing.JButton botonCambiarNegativoPositivo;
     private javax.swing.JButton botonCerrarParentesis;
     private javax.swing.JButton botonComa;
-    private javax.swing.JButton botonCosecante;
-    private javax.swing.JButton botonCoseno;
-    private javax.swing.JButton botonCotangente;
-    private javax.swing.JButton botonCualquierRaiz;
     private javax.swing.JButton botonDividir;
-    private javax.swing.JButton botonElevarCuadrado;
-    private javax.swing.JButton botonElevarCualquierNumero;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonEliminarTodo;
     private javax.swing.JButton botonEuler;
     private javax.swing.JButton botonIgual;
-    private javax.swing.JButton botonLogaritmo;
-    private javax.swing.JButton botonLogaritmoNatural;
-    private javax.swing.JButton botonMod;
-    private javax.swing.JButton botonModoDegORad;
     private javax.swing.JButton botonMultiplicar;
     private javax.swing.JButton botonPi;
-    private javax.swing.JButton botonPorcentaje;
-    private javax.swing.JButton botonRaizCuadrada;
     private javax.swing.JButton botonRestar;
-    private javax.swing.JButton botonSecante;
-    private javax.swing.JButton botonSeno;
     private javax.swing.JButton botonSumar;
-    private javax.swing.JButton botonTangente;
-    private javax.swing.JButton botonVariableX;
-    private javax.swing.JButton botonVariableY;
-    private javax.swing.JButton botonVariableZ;
     private javax.swing.JList<String> historial;
     private javax.swing.JLabel jLabelHistorial;
     private javax.swing.JScrollPane jScrollPane1;
