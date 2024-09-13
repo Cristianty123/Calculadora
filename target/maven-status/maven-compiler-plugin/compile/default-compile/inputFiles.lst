@@ -1,5 +1,6 @@
 C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\vista\component\ScrollBarWin11UI.java
 C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\model\operacion\matrix\OperacionMatrix.java
+C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\vista\component\MyList.java
 C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\estructuras\linkedlist\syngly\circular\LinkedList.java
 C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\model\operacion\convercion\Suma.java
 C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\vista\mode\Cientifica.java
@@ -16,6 +17,7 @@ C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculador
 C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\vista\component\ScrollPaneWin11.java
 C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\controlador\CalculadoraControlador.java
 C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\model\operacion\reales\funcion\EncontrarCorte.java
+C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\vista\component\ListItem.java
 C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\model\CalculadoraModel.java
 C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\model\operacion\reales\funcion\Calculo.java
 C:\Users\USUARIO\Documents\NetBeansProjects\Calculadora\src\main\java\calculadora\model\operacion\reales\OperacionAlgebraica.java

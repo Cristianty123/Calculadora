@@ -9,6 +9,7 @@ calculadora\vista\mode\Cientifica$18.class
 estructuras\linkedlist\syngly\circular\LinkedList$1.class
 calculadora\vista\mode\Cientifica$14.class
 calculadora\vista\mode\Cientifica$24.class
+calculadora\vista\mode\Cientifica$28.class
 calculadora\vista\mode\Cientifica$7.class
 calculadora\vista\mode\Cientifica.class
 calculadora\vista\mode\Cientifica$8.class
@@ -30,11 +31,13 @@ calculadora\vista\mode\Cientifica$9.class
 calculadora\vista\mode\Cientifica$22.class
 estructuras\linkedlist\syngly\circular\LinkedList.class
 calculadora\vista\CalculadoraVista$1.class
+calculadora\vista\component\MyList$1.class
 calculadora\vista\mode\Cientifica$26.class
 calculadora\model\operacion\convercion\Suma.class
 calculadora\model\operacion\reales\funcion\EncontrarCorte.class
 calculadora\vista\mode\Cientifica$23.class
 calculadora\vista\mode\Cientifica$13.class
+calculadora\vista\component\MyList$2.class
 calculadora\vista\mode\Cientifica$19.class
 calculadora\vista\mode\Cientifica$2.class
 estructuras\stack\Stack.class
@@ -47,10 +50,13 @@ calculadora\Calculadora.class
 calculadora\vista\component\ScrollBarWin11UI.class
 calculadora\vista\mode\Cientifica$27.class
 calculadora\vista\component\ScrollPaneWin11$ScrollLayout.class
+calculadora\vista\component\MyList.class
 calculadora\vista\mode\Cientifica$1.class
 calculadora\model\operacion\reales\funcion\FuncionTrigonometrica.class
+calculadora\vista\component\MyList$3.class
 calculadora\model\operacion\convercion\Convertir.class
 calculadora\util\iterator\Iterator.class
 calculadora\vista\CalculadoraVista.class
+calculadora\vista\component\ListItem.class
 calculadora\vista\mode\Cientifica$12.class
 calculadora\vista\mode\Cientifica$15.class
