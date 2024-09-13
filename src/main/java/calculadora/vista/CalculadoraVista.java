@@ -3,7 +3,6 @@ package calculadora.vista;
 import calculadora.controlador.CalculadoraControlador;
 import calculadora.vista.mode.Cientifica;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 public class CalculadoraVista extends javax.swing.JFrame {
 
@@ -13,6 +12,7 @@ public class CalculadoraVista extends javax.swing.JFrame {
     public CalculadoraVista() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
     
     public void iniciar() {
