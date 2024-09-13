@@ -1,7 +1,7 @@
 package calculadora.vista.mode;
 
 import calculadora.controlador.CalculadoraControlador;
-import calculadora.model.operacion.reales.funcion.FuncionTrigonometrica.Modo;
+import java.awt.Color;
 import javax.swing.DefaultListModel;
 
 public class Cientifica extends javax.swing.JPanel {
@@ -18,8 +18,13 @@ public class Cientifica extends javax.swing.JPanel {
     public Cientifica(CalculadoraControlador controlador) {
         this.controlador = controlador;
         initComponents();
+        init();
+        
+    }
+    private void init(){
         historial.setModel(historialModel);
         historialModel.addElement("No hay historial todavía");
+        jScrollPane1.setVisible(false);
     }
     private String eliminarCerosDespuesComa(String texto) {
         int indexComa = texto.indexOf(",");
@@ -141,7 +146,7 @@ public class Cientifica extends javax.swing.JPanel {
     private void initComponents() {
 
         operaciones = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new calculadora.vista.component.ScrollPaneWin11();
         historial = new javax.swing.JList<>();
         boton0 = new javax.swing.JButton();
         boton1 = new javax.swing.JButton();
@@ -167,8 +172,11 @@ public class Cientifica extends javax.swing.JPanel {
         botonCambiarNegativoPositivo = new javax.swing.JButton();
         botonEuler = new javax.swing.JButton();
         botonPi = new javax.swing.JButton();
-        jLabelHistorial = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         vistaOperaciones = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(102, 102, 102));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         operaciones.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         operaciones.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -181,51 +189,66 @@ public class Cientifica extends javax.swing.JPanel {
                 operacionesActionPerformed(evt);
             }
         });
+        add(operaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 42, 275, 52));
 
-        historial.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        historial.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jScrollPane1.setViewportView(historial);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 320, 300));
+
+        boton0.setBackground(new java.awt.Color(204, 204, 204));
         boton0.setText("0");
         boton0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton0ActionPerformed(evt);
             }
         });
+        add(boton0, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 357, 60, 40));
 
+        boton1.setBackground(new java.awt.Color(204, 204, 204));
         boton1.setText("1");
         boton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton1ActionPerformed(evt);
             }
         });
+        add(boton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 311, 60, 40));
 
+        boton2.setBackground(new java.awt.Color(204, 204, 204));
         boton2.setText("2");
         boton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton2ActionPerformed(evt);
             }
         });
+        add(boton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 311, 60, 40));
 
+        boton3.setBackground(new java.awt.Color(204, 204, 204));
         boton3.setText("3");
         boton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton3ActionPerformed(evt);
             }
         });
+        add(boton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 311, 60, 40));
 
+        botonAns.setBackground(new java.awt.Color(204, 204, 204));
         botonAns.setText("Ans");
         botonAns.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAnsActionPerformed(evt);
             }
         });
+        add(botonAns, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 357, 60, 40));
 
+        botonComa.setBackground(new java.awt.Color(204, 204, 204));
         botonComa.setText(",");
         botonComa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonComaActionPerformed(evt);
             }
         });
+        add(botonComa, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 357, 60, 40));
 
         botonIgual.setBackground(new java.awt.Color(131, 169, 192));
         botonIgual.setText("=");
@@ -234,76 +257,97 @@ public class Cientifica extends javax.swing.JPanel {
                 botonIgualActionPerformed(evt);
             }
         });
+        add(botonIgual, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 357, 60, 40));
 
+        botonSumar.setBackground(new java.awt.Color(204, 204, 204));
         botonSumar.setText("+");
         botonSumar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonSumarActionPerformed(evt);
             }
         });
+        add(botonSumar, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 311, 60, 40));
 
+        boton4.setBackground(new java.awt.Color(204, 204, 204));
         boton4.setText("4");
         boton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton4ActionPerformed(evt);
             }
         });
+        add(boton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 265, 60, 40));
 
+        boton5.setBackground(new java.awt.Color(204, 204, 204));
         boton5.setText("5");
         boton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton5ActionPerformed(evt);
             }
         });
+        add(boton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 265, 60, 40));
 
+        boton6.setBackground(new java.awt.Color(204, 204, 204));
         boton6.setText("6");
         boton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton6ActionPerformed(evt);
             }
         });
+        add(boton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 265, 60, 40));
 
+        boton7.setBackground(new java.awt.Color(204, 204, 204));
         boton7.setText("7");
         boton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton7ActionPerformed(evt);
             }
         });
+        add(boton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 219, 60, 40));
 
+        boton8.setBackground(new java.awt.Color(204, 204, 204));
         boton8.setText("8");
         boton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton8ActionPerformed(evt);
             }
         });
+        add(boton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 219, 60, 40));
 
+        boton9.setBackground(new java.awt.Color(204, 204, 204));
         boton9.setText("9");
         boton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton9ActionPerformed(evt);
             }
         });
+        add(boton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 219, 60, 40));
 
+        botonMultiplicar.setBackground(new java.awt.Color(204, 204, 204));
         botonMultiplicar.setText("x");
         botonMultiplicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonMultiplicarActionPerformed(evt);
             }
         });
+        add(botonMultiplicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 219, 60, 40));
 
+        botonDividir.setBackground(new java.awt.Color(204, 204, 204));
         botonDividir.setText("÷");
         botonDividir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonDividirActionPerformed(evt);
             }
         });
+        add(botonDividir, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 265, 60, 40));
 
+        botonRestar.setBackground(new java.awt.Color(204, 204, 204));
         botonRestar.setText("-");
         botonRestar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonRestarActionPerformed(evt);
             }
         });
+        add(botonRestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 173, 60, 40));
 
         botonEliminar.setBackground(new java.awt.Color(255, 105, 98));
         botonEliminar.setText("DEL");
@@ -312,6 +356,7 @@ public class Cientifica extends javax.swing.JPanel {
                 botonEliminarActionPerformed(evt);
             }
         });
+        add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 127, 60, 40));
 
         botonEliminarTodo.setBackground(new java.awt.Color(255, 105, 98));
         botonEliminarTodo.setText("AC");
@@ -320,45 +365,61 @@ public class Cientifica extends javax.swing.JPanel {
                 botonEliminarTodoActionPerformed(evt);
             }
         });
+        add(botonEliminarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 127, 60, 40));
 
+        botonAbrirParentesis.setBackground(new java.awt.Color(204, 204, 204));
         botonAbrirParentesis.setText("(");
         botonAbrirParentesis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAbrirParentesisActionPerformed(evt);
             }
         });
+        add(botonAbrirParentesis, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 173, 60, 40));
 
+        botonCerrarParentesis.setBackground(new java.awt.Color(204, 204, 204));
         botonCerrarParentesis.setText(")");
         botonCerrarParentesis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCerrarParentesisActionPerformed(evt);
             }
         });
+        add(botonCerrarParentesis, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 173, 60, 40));
 
+        botonCambiarNegativoPositivo.setBackground(new java.awt.Color(204, 204, 204));
         botonCambiarNegativoPositivo.setText("+/-");
         botonCambiarNegativoPositivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCambiarNegativoPositivoActionPerformed(evt);
             }
         });
+        add(botonCambiarNegativoPositivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 173, 60, 40));
 
+        botonEuler.setBackground(new java.awt.Color(204, 204, 204));
         botonEuler.setText("e");
         botonEuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEulerActionPerformed(evt);
             }
         });
+        add(botonEuler, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 127, 60, 40));
 
+        botonPi.setBackground(new java.awt.Color(204, 204, 204));
         botonPi.setText("π");
         botonPi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonPiActionPerformed(evt);
             }
         });
+        add(botonPi, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 127, 60, 40));
 
-        jLabelHistorial.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabelHistorial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelHistorial.setText("Historial");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/historial_2.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 16, 16));
 
         vistaOperaciones.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         vistaOperaciones.setForeground(new java.awt.Color(153, 153, 153));
@@ -371,130 +432,7 @@ public class Cientifica extends javax.swing.JPanel {
                 vistaOperacionesActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonAbrirParentesis, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonCerrarParentesis, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonCambiarNegativoPositivo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonRestar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(boton8, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(boton9, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(boton4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(boton6, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonDividir, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonSumar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonComa, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonAns, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(operaciones)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonEuler, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonPi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonEliminarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(vistaOperaciones))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabelHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(operaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonEuler, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonPi, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonEliminarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonAbrirParentesis, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonCerrarParentesis, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonCambiarNegativoPositivo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonRestar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boton8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boton9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boton6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonDividir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonSumar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonComa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonAns, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(vistaOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelHistorial))
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane1)))
-                .addGap(22, 22, 22))
-        );
+        add(vistaOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 26, 275, 24));
     }// </editor-fold>//GEN-END:initComponents
 
     private void operacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operacionesActionPerformed
@@ -835,6 +773,22 @@ if (igual) {
         // TODO add your handling code here:
     }//GEN-LAST:event_vistaOperacionesActionPerformed
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        if(jScrollPane1.isVisible()){
+            jScrollPane1.setVisible(false);
+            vistaOperaciones.setBackground(new Color(255,255,255));
+            operaciones.setBackground(new Color(255,255,255));
+            operaciones.setForeground(new Color(0,0,0));
+            this.setBackground(new Color(102, 102, 102));
+        }else{
+            vistaOperaciones.setBackground(new Color(235,235,235));
+            operaciones.setBackground(new Color(235,235,235));
+            operaciones.setForeground(new Color(51,51,51));
+            this.setBackground(new Color(120, 120, 120));
+            jScrollPane1.setVisible(true);
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton0;
@@ -862,7 +816,7 @@ if (igual) {
     private javax.swing.JButton botonRestar;
     private javax.swing.JButton botonSumar;
     private javax.swing.JList<String> historial;
-    private javax.swing.JLabel jLabelHistorial;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField operaciones;
     private javax.swing.JTextField vistaOperaciones;

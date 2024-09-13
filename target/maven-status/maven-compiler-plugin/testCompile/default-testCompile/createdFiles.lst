@@ -1,8 +1,13 @@
+testAnimation\main$1.class
+testConvercion\TestConvertir.class
+testComplex\TestOperacionCompleja.class
+testAnimation\CientificaTest$2.class
+testAnimation\main.class
 testFuncion\TestCalculo.class
 testFuncion\TestEncontrarCorte.class
 testFuncion\TestFuncionTrigonometrica.class
-testConvercion\TestConvertir.class
-testComplex\TestOperacionCompleja.class
+testAnimation\CientificaTest$1.class
+testAnimation\CientificaTest.class
 testMatrix\TestOperacionMatrix.class
 testCalcularOperacion\testCalcularOperacionAlgebraica.class
 testOperacionAlgebraica\TestOperacionAlgebraica.class
