@@ -6,6 +6,9 @@ import calculadora.vista.CalculadoraVista;
 
 public class Calculadora {
 
+    public static CalculadoraModel model = new CalculadoraModel();
+    public static CalculadoraVista vista = new CalculadoraVista();
+    public static CalculadoraControlador controlador = new CalculadoraControlador(vista, model);
     public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -31,10 +34,6 @@ public class Calculadora {
         //</editor-fold>
 
         /* Create and display the form */
-        CalculadoraModel model = new CalculadoraModel();
-        CalculadoraVista vista = new CalculadoraVista();
-        CalculadoraControlador controlador = new CalculadoraControlador(vista, model);
-        
         vista.setControlador(controlador);
 
         // Iniciar la aplicación

@@ -1,5 +1,6 @@
 package calculadora.vista.component;
 
+import calculadora.Calculadora;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -136,6 +137,7 @@ public class MyList<E extends Object> extends JList<E> {
             g2.setColor(new Color(120, 120, 120));
             String text = "No hay historial todavia";
             g2.drawString(text, getWidth() / 2 - 150, 20  );
+            Calculadora.vista.getCientifica().getjLabelBorrarTodo().setVisible(false);
         }
     }
 

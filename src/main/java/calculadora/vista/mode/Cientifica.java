@@ -2,23 +2,33 @@ package calculadora.vista.mode;
 
 import calculadora.controlador.CalculadoraControlador;
 import calculadora.vista.component.MyList;
+import calculadora.vista.component.ScrollPaneWin11;
 import java.awt.Color;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 
 public class Cientifica extends javax.swing.JPanel {
     
     private final CalculadoraControlador controlador;
     private final DefaultListModel<String> historialModel;
     private final MyList<String> list;
-    private boolean igual = true;
-    private boolean operacionBolean = false;
-    private boolean operador = false;
-    private boolean parentesis = false;
+    private boolean igual;
+    private boolean operacionBolean;
+    private boolean operador;
+    private boolean parentesis;
     private int contadorParentesis = 0;
     private String numeroAnterior = "0";
-
+    private JLabel jLabelBorrarTodo;
+    private ScrollPaneWin11 historialScrollPane;
+    
     public Cientifica(CalculadoraControlador controlador) {
         this.controlador = controlador;
+        historialScrollPane = new ScrollPaneWin11();
+        igual = true;
+        operacionBolean = false;
+        operador = false;
+        parentesis = false;
         list = new MyList<>();
         historialModel = new DefaultListModel();
         list.setModel(historialModel);
@@ -26,9 +36,40 @@ public class Cientifica extends javax.swing.JPanel {
         init();
         
     }
+    public JLabel getjLabelBorrarTodo(){
+        return jLabelBorrarTodo;
+    }
     private void init(){
-        jScrollPane1.setViewportView(list);
-        jScrollPane1.setVisible(false);
+        
+    jLabelBorrarTodo = new JLabel();
+    historialScrollPane = new ScrollPaneWin11();
+    
+    jLabelBorrarTodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete_red.png"))); // NOI18N
+    jLabelBorrarTodo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    
+    jLabelBorrarTodo.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            jLabelBorrarTodoMouseClicked(evt);
+        }
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            jLabelBorrarTodoMouseEntered(evt);
+        }
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            jLabelBorrarTodoMouseExited(evt);
+        }
+    });
+
+        jLayeredPane1.add(jLabelBorrarTodo, JLayeredPane.PALETTE_LAYER);
+        jLabelBorrarTodo.setBounds(280, 270, 30, 30);
+        jLabelBorrarTodo.getAccessibleContext().setAccessibleName("");
+        
+        jLayeredPane1.add(historialScrollPane,JLayeredPane.DEFAULT_LAYER);
+        historialScrollPane.setBounds(0, 0, 320, 320);
+        historialScrollPane.setViewportView(list);
+        historialScrollPane.setVisible(false);
         jLabelBorrarTodo.setVisible(false);
     }
     private String eliminarCerosDespuesComa(String texto) {
@@ -56,7 +97,7 @@ public class Cientifica extends javax.swing.JPanel {
             return i + 1;
         }
     }
-    return 0; // Si no se encuentra espacio o paréntesis, insertar al principio
+    return 0; 
     }
     private void manejarOperacion(String operacion) {
        String textoOperaciones = operaciones.getText();
@@ -147,10 +188,8 @@ public class Cientifica extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelBorrarTodo = new javax.swing.JLabel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         operaciones = new javax.swing.JTextField();
-        jScrollPane1 = new calculadora.vista.component.ScrollPaneWin11();
-        historial = new calculadora.vista.component.MyList<>();
         boton0 = new javax.swing.JButton();
         boton1 = new javax.swing.JButton();
         boton2 = new javax.swing.JButton();
@@ -180,22 +219,7 @@ public class Cientifica extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(102, 102, 102));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabelBorrarTodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete_red.png"))); // NOI18N
-        jLabelBorrarTodo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelBorrarTodo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelBorrarTodoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelBorrarTodoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabelBorrarTodoMouseExited(evt);
-            }
-        });
-        add(jLabelBorrarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, -1, -1));
-        jLabelBorrarTodo.getAccessibleContext().setAccessibleName("");
+        add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 320, 310));
 
         operaciones.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         operaciones.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -209,11 +233,6 @@ public class Cientifica extends javax.swing.JPanel {
             }
         });
         add(operaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 42, 275, 52));
-
-        historial.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jScrollPane1.setViewportView(historial);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 320, 310));
 
         boton0.setBackground(new java.awt.Color(204, 204, 204));
         boton0.setText("0");
@@ -823,8 +842,8 @@ if (igual) {
     }//GEN-LAST:event_vistaOperacionesActionPerformed
 
     private void botonHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonHistorialMouseClicked
-        if(jScrollPane1.isVisible()){
-            jScrollPane1.setVisible(false);
+        if(historialScrollPane.isVisible()){
+            historialScrollPane.setVisible(false);
             vistaOperaciones.setBackground(new Color(255,255,255));
             operaciones.setBackground(new Color(255,255,255));
             operaciones.setForeground(new Color(0,0,0));
@@ -835,27 +854,25 @@ if (igual) {
             operaciones.setBackground(new Color(235,235,235));
             operaciones.setForeground(new Color(51,51,51));
             this.setBackground(new Color(120, 120, 120));
-            jScrollPane1.setVisible(true);
+            historialScrollPane.setVisible(true);
             System.out.println("cantidad de datos " + list.cantidadDatos());
             if(!jLabelBorrarTodo.isVisible() && list.cantidadDatos() > 0){
                 jLabelBorrarTodo.setVisible(true);
             }
-        }
+        }    
     }//GEN-LAST:event_botonHistorialMouseClicked
+    private void jLabelBorrarTodoMouseExited(java.awt.event.MouseEvent evt) {                                             
+        jLabelBorrarTodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete_red.png")));
+    }                                            
 
-    private void jLabelBorrarTodoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBorrarTodoMouseEntered
+    private void jLabelBorrarTodoMouseEntered(java.awt.event.MouseEvent evt) {                                              
         jLabelBorrarTodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete_disable.png")));
-    }//GEN-LAST:event_jLabelBorrarTodoMouseEntered
+    }                                             
 
-    private void jLabelBorrarTodoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBorrarTodoMouseExited
-        jLabelBorrarTodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete_red.png")));    
-    }//GEN-LAST:event_jLabelBorrarTodoMouseExited
-
-    private void jLabelBorrarTodoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBorrarTodoMouseClicked
+    private void jLabelBorrarTodoMouseClicked(java.awt.event.MouseEvent evt) {                                              
         list.clear();
         jLabelBorrarTodo.setVisible(false);
-    }//GEN-LAST:event_jLabelBorrarTodoMouseClicked
-
+    }    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton0;
@@ -883,9 +900,7 @@ if (igual) {
     private javax.swing.JButton botonPi;
     private javax.swing.JButton botonRestar;
     private javax.swing.JButton botonSumar;
-    private javax.swing.JList<String> historial;
-    private javax.swing.JLabel jLabelBorrarTodo;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JTextField operaciones;
     private javax.swing.JTextField vistaOperaciones;
     // End of variables declaration//GEN-END:variables

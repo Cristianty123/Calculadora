@@ -15,6 +15,10 @@ public class CalculadoraVista extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
+    public Cientifica getCientifica(){
+        return cientifica;
+    }
+    
     public void iniciar() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
