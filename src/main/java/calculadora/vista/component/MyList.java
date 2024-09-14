@@ -135,7 +135,7 @@ public class MyList<E extends Object> extends JList<E> {
             //  for draw image smooth
             g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
             g2.setColor(new Color(120, 120, 120));
-            String text = "No hay historial todavia";
+            String text = "Historial vacio";
             g2.drawString(text, getWidth() / 2 - 150, 20  );
             Calculadora.vista.getCientifica().getjLabelBorrarTodo().setVisible(false);
         }

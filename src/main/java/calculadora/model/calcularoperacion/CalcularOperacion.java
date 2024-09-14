@@ -181,7 +181,7 @@ public class CalcularOperacion {
             case "x":
                 operandos.push(OperacionAlgebraica.multiplicacion(numero1, numero2));
                 break;
-            case "÷":
+            case "/":
                 operandos.push(OperacionAlgebraica.division(numero1, numero2));
                 break;
             case "^":
@@ -241,7 +241,7 @@ public class CalcularOperacion {
             case "-":
                 return 1;
             case "x":
-            case "÷":
+            case "/":
             case "Mod": 
                 return 2;
             case "^":
