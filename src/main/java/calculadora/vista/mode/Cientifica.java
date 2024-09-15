@@ -5,11 +5,14 @@ import calculadora.vista.component.MyList;
 import calculadora.vista.component.ScrollPaneWin11;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.Timer;
 
 public class Cientifica extends javax.swing.JPanel {
     
@@ -24,6 +27,11 @@ public class Cientifica extends javax.swing.JPanel {
     private String numeroAnterior = "0";
     private JLabel jLabelBorrarTodo;
     private ScrollPaneWin11 historialScrollPane;
+    private boolean isExpanded = false;
+    private Timer timer;
+    private int startY;
+    private int endY;
+    private KeyListener keyListener;
     
     public Cientifica(CalculadoraControlador controlador) {
         this.controlador = controlador;
@@ -36,16 +44,15 @@ public class Cientifica extends javax.swing.JPanel {
         historialModel = new DefaultListModel();
         list.setModel(historialModel);
         initComponents();
+        initKeyListener();
         init();
         
     }
     public JLabel getjLabelBorrarTodo(){
         return jLabelBorrarTodo;
     }
-    private void init(){
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-        this.addKeyListener(new KeyListener(){
+    private void initKeyListener(){
+        keyListener = new KeyListener(){
             @Override
             public void keyTyped(KeyEvent e) {
                 
@@ -69,7 +76,12 @@ public class Cientifica extends javax.swing.JPanel {
                 
             }
             
-        });
+        }; 
+    }
+    private void init(){
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+        this.addKeyListener(keyListener);
         list.setFont(new Font("Tahoma", Font.PLAIN, 18));
         jLabelBorrarTodo = new JLabel();
         historialScrollPane = new ScrollPaneWin11();
@@ -97,9 +109,10 @@ public class Cientifica extends javax.swing.JPanel {
         jLabelBorrarTodo.getAccessibleContext().setAccessibleName("");
         
         jLayeredPane1.add(historialScrollPane,JLayeredPane.DEFAULT_LAYER);
-        historialScrollPane.setBounds(0, 0, 320, 314);
+        //inicio historialScrollPane.setBounds(0, 0, 320, 314);
+        historialScrollPane.setBounds(0, 314, 320, 314);
         historialScrollPane.setViewportView(list);
-        historialScrollPane.setVisible(false);
+        historialScrollPane.setVisible(true);
         jLabelBorrarTodo.setVisible(false);
     }
     private String eliminarCerosDespuesComa(String texto) {
@@ -846,28 +859,63 @@ if (igual) {
     }//GEN-LAST:event_vistaOperacionesActionPerformed
 
     private void botonHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonHistorialMouseClicked
-        if(historialScrollPane.isVisible()){
-            historialScrollPane.setVisible(false);
+        if(isExpanded){
+            this.addKeyListener(keyListener);
+            toggleButtons(true);
+            startY = 0;
+            endY = 314;
+            animateScrollPane();
             vistaOperaciones.setBackground(new Color(255,255,255));
             operaciones.setBackground(new Color(255,255,255));
             operaciones.setForeground(new Color(0,0,0));
             jLabelBorrarTodo.setVisible(false);
             this.setBackground(new Color(102, 102, 102));
         }else{
+            this.removeKeyListener(keyListener);
+            toggleButtons(false);
+            startY = 314;
+            endY = 0;
+            animateScrollPane();
             vistaOperaciones.setBackground(new Color(235,235,235));
             operaciones.setBackground(new Color(235,235,235));
             operaciones.setForeground(new Color(51,51,51));
             this.setBackground(new Color(120, 120, 120));
             historialScrollPane.setVisible(true);
-            System.out.println("cantidad de datos " + list.cantidadDatos());
             if(!jLabelBorrarTodo.isVisible() && list.cantidadDatos() > 0){
                 jLabelBorrarTodo.setVisible(true);
             }
-        }    
+        }
+        isExpanded = !isExpanded;
     }//GEN-LAST:event_botonHistorialMouseClicked
     private void jLabelBorrarTodoMouseExited(java.awt.event.MouseEvent evt) {                                             
         jLabelBorrarTodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete_red.png")));
-    }                                            
+    }
+    private void toggleButtons(boolean enable) {
+        boton0.setEnabled(enable);
+        boton1.setEnabled(enable);
+        boton2.setEnabled(enable);
+        boton3.setEnabled(enable);
+        boton4.setEnabled(enable);
+        boton5.setEnabled(enable);
+        boton6.setEnabled(enable);
+        boton7.setEnabled(enable);
+        boton8.setEnabled(enable);
+        boton9.setEnabled(enable);
+        botonAbrirParentesis.setEnabled(enable);
+        botonAns.setEnabled(enable);
+        botonCambiarNegativoPositivo.setEnabled(enable);
+        botonCerrarParentesis.setEnabled(enable);
+        botonComa.setEnabled(enable);
+        botonDividir.setEnabled(enable);
+        botonEliminar.setEnabled(enable);
+        botonEliminarTodo.setEnabled(enable);
+        botonEuler.setEnabled(enable);
+        botonIgual.setEnabled(enable);
+        botonMultiplicar.setEnabled(enable);
+        botonPi.setEnabled(enable);
+        botonRestar.setEnabled(enable);
+        botonSumar.setEnabled(enable);
+    }
 
     private void jLabelBorrarTodoMouseEntered(java.awt.event.MouseEvent evt) {                                              
         jLabelBorrarTodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete_disable.png")));
@@ -902,7 +950,7 @@ if (igual) {
             operacionBolean = false;
         }
         if(!textoOperaciones.equals("0") && igual == false && operador == false){
-           // Eliminar los ceros después de la coma si existen
+           
            if(operacionBolean == true){
                vistaOperaciones.setText(textoVistaOperaciones  + " + ");
                operacionBolean = false;
@@ -920,6 +968,32 @@ if (igual) {
             String nuevoTextoVistaOperaciones = textoVistaOperaciones.substring(0, textoVistaOperaciones.length() - 2) + "+ ";
             vistaOperaciones.setText(nuevoTextoVistaOperaciones);
         }
+    }
+    private void animateScrollPane() {
+        
+        if (timer != null && timer.isRunning()) {
+            timer.stop();
+        }
+        
+        
+        timer = new Timer(10, new ActionListener() {
+            int currentY = startY;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                int deltaY = (endY - startY) / 10; 
+                
+                if ((deltaY > 0 && currentY < endY) || (deltaY < 0 && currentY > endY)) {
+                    currentY += deltaY;
+                    historialScrollPane.setBounds(0, currentY, 320, 314);
+                } else {
+                    
+                    historialScrollPane.setBounds(0, endY, 320, 314);
+                    timer.stop(); 
+                }
+            }
+        });
+        timer.start(); 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
