@@ -22,20 +22,20 @@ public class testCalcularOperacionAlgebraica {
     @Test
     public void testCalcularOperacionesAlgebraicas(){
         
-        assertEquals(8.4,calcularOperacion.calcular("6 + 3 ÷ 5 x 9 - 3"));
+        assertEquals(8.4,calcularOperacion.calcular("6 + 3 / 5 x 9 - 3"));
         assertEquals(6.718281,calcularOperacion.calcular("4 + e"),0.001);
-        assertEquals(1.570796327,calcularOperacion.calcular("π ÷ 2"),0.001);
+        assertEquals(1.570796327,calcularOperacion.calcular("π / 2"),0.001);
         assertEquals(6561,calcularOperacion.calcular("9 ^ 2 ^ 2"));
-        assertEquals(9,calcularOperacion.calcular("6,6 + 3 ÷ 5 x 9 - 3"));
+        assertEquals(9,calcularOperacion.calcular("6,6 + 3 / 5 x 9 - 3"));
         assertEquals(40,calcularOperacion.calcular("5 ^ 2 + 6 + 9"));
-        assertEquals(-3,calcularOperacion.calcular("6,6 + 3 ÷ 5 x 9 - 3 x (4 - 6 + 7)"));
-        assertEquals(30.33333333333333,calcularOperacion.calcular("(((((9 + 3) x 25 ÷ 9) - 3)))"),0.001);
+        assertEquals(-3,calcularOperacion.calcular("6,6 + 3 / 5 x 9 - 3 x (4 - 6 + 7)"));
+        assertEquals(30.33333333333333,calcularOperacion.calcular("(((((9 + 3) x 25 / 9) - 3)))"),0.001);
         
     }
     @Test
     public void testCalcularOperacionesAlgebraicasCuandoSeDivideEn0(){
         assertThrows(ArithmeticException.class, () -> {
-            calcularOperacion.calcular("5 + 6 + 7 ÷ 0 + 6 x 6");
+            calcularOperacion.calcular("5 + 6 + 7 / 0 + 6 x 6");
         });
         
     }

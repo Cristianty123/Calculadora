@@ -15,7 +15,7 @@ public class CalcularOperacion {
     }
 
     private String resolverParentesis(String expresion) {
-        expresion = expresion.replace("√", "r");
+        expresion = expresion.replace("√", "R");
         int inicioParentesis = expresion.indexOf("(");
         while (inicioParentesis != -1) {
         int indicePrevio = inicioParentesis - 1;
@@ -58,7 +58,7 @@ public class CalcularOperacion {
             inicioParentesis = expresion.indexOf("(");
         }
     }
-        expresion = expresion.replace("r", "√");
+        expresion = expresion.replace("R", "√");
         return expresion;
 }
 
@@ -277,7 +277,7 @@ public class CalcularOperacion {
     }
 
     private boolean esRaiz(String cadena) {
-        return cadena.contains("√") || cadena.contains("r");
+        return cadena.contains("√") || cadena.contains("R");
     }
 
     private double calcularRaiz(String funcion, double numero) {
