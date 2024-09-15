@@ -13,6 +13,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.Timer;
+import javax.swing.border.MatteBorder;
 
 public class Cientifica extends javax.swing.JPanel {
     
@@ -23,19 +24,25 @@ public class Cientifica extends javax.swing.JPanel {
     private boolean operacionBolean;
     private boolean operador;
     private boolean parentesis;
-    private int contadorParentesis = 0;
-    private String numeroAnterior = "0";
+    private int contadorParentesis;
+    private String numeroAnterior ;
     private JLabel jLabelBorrarTodo;
     private ScrollPaneWin11 historialScrollPane;
-    private boolean isExpanded = false;
+    private boolean isExpanded ;
     private Timer timer;
     private int startY;
     private int endY;
     private KeyListener keyListener;
+    private final MatteBorder borderOperaciones, borderVistaOperaciones;
     
     public Cientifica(CalculadoraControlador controlador) {
         this.controlador = controlador;
+        contadorParentesis = 0;
+        numeroAnterior = "0";
+        isExpanded = false;
         historialScrollPane = new ScrollPaneWin11();
+        borderOperaciones = new MatteBorder(0, 1, 1, 1, new Color(51,51,51));
+        borderVistaOperaciones = new MatteBorder(1, 1, 0, 1, new Color(51,51,51));
         igual = true;
         operacionBolean = false;
         operador = false;
@@ -367,7 +374,7 @@ public class Cientifica extends javax.swing.JPanel {
         operaciones.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         operaciones.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         operaciones.setText("0");
-        operaciones.setBorder(null);
+        operaciones.setBorder(borderOperaciones);
         operaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         operaciones.setFocusable(false);
         operaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -607,7 +614,7 @@ public class Cientifica extends javax.swing.JPanel {
         vistaOperaciones.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         vistaOperaciones.setForeground(new java.awt.Color(153, 153, 153));
         vistaOperaciones.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        vistaOperaciones.setBorder(null);
+        vistaOperaciones.setBorder(borderVistaOperaciones);
         vistaOperaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         vistaOperaciones.setFocusable(false);
         vistaOperaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -870,6 +877,9 @@ if (igual) {
             operaciones.setForeground(new Color(0,0,0));
             jLabelBorrarTodo.setVisible(false);
             this.setBackground(new Color(102, 102, 102));
+            MatteBorder border = new MatteBorder(0, 1, 1, 1, new Color(51,51,51));
+            operaciones.setBorder(border);
+            vistaOperaciones.setBorder(border);
         }else{
             this.removeKeyListener(keyListener);
             toggleButtons(false);
@@ -884,6 +894,9 @@ if (igual) {
             if(!jLabelBorrarTodo.isVisible() && list.cantidadDatos() > 0){
                 jLabelBorrarTodo.setVisible(true);
             }
+            MatteBorder border = new MatteBorder(0, 1, 1, 1, new Color(85,85,85));
+            operaciones.setBorder(border);
+            vistaOperaciones.setBorder(border);
         }
         isExpanded = !isExpanded;
     }//GEN-LAST:event_botonHistorialMouseClicked
