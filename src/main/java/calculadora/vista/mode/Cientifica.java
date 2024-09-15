@@ -62,19 +62,29 @@ public class Cientifica extends javax.swing.JPanel {
         keyListener = new KeyListener(){
             @Override
             public void keyTyped(KeyEvent e) {
-                
+                char keyChar = e.getKeyChar();
+                ifKeyPressedNumbers(keyChar, e);
+                ifOperador(keyChar);
+                if(keyChar == '('){
+                    botonAbrirParentesisActionPerformed();
+                }else if (keyChar == ')'){
+                    botonCerrarParentesisActionPerformed();
+                }else if(keyChar == ','){
+                    botonComaActionPerformed();
+                }
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
-                ifKeyPressedNumbers(keyCode);
-                ifOperador(keyCode);
+                
                 if(keyCode == KeyEvent.VK_BACK_SPACE){
                     botonEliminarActionPerformed();
                 }
                 else if(keyCode == KeyEvent.VK_ENTER){
                     igualarActionPerformed();
+                }else if (keyCode == KeyEvent.VK_DELETE){
+                    botonEliminarTodoActionPerformed();
                 }
             }
 
@@ -140,32 +150,95 @@ public class Cientifica extends javax.swing.JPanel {
         }
         return texto;
     }
-    private void ifKeyPressedNumbers(int keyCode){
-        switch (keyCode) {
-            case KeyEvent.VK_0, KeyEvent.VK_NUMPAD0 -> boton0ActionPerformed();
-            case KeyEvent.VK_1, KeyEvent.VK_NUMPAD1 -> botonNumeroActionPerformed("1");
-            case KeyEvent.VK_2, KeyEvent.VK_NUMPAD2 -> botonNumeroActionPerformed("2");
-            case KeyEvent.VK_3, KeyEvent.VK_NUMPAD3 -> botonNumeroActionPerformed("3");
-            case KeyEvent.VK_4, KeyEvent.VK_NUMPAD4 -> botonNumeroActionPerformed("4");
-            case KeyEvent.VK_5, KeyEvent.VK_NUMPAD5 -> botonNumeroActionPerformed("5");
-            case KeyEvent.VK_6, KeyEvent.VK_NUMPAD6 -> botonNumeroActionPerformed("6");
-            case KeyEvent.VK_7, KeyEvent.VK_NUMPAD7 -> botonNumeroActionPerformed("7");
-            case KeyEvent.VK_8, KeyEvent.VK_NUMPAD8 -> botonNumeroActionPerformed("8");
-            case KeyEvent.VK_9, KeyEvent.VK_NUMPAD9 -> botonNumeroActionPerformed("9");
+    private void ifKeyPressedNumbers(char keyCode, KeyEvent e){
+        boolean shiftPressed = e.isShiftDown();
+        if(!shiftPressed){
+            switch (keyCode) {
+                case '0' -> boton0ActionPerformed();
+                case '1' -> botonNumeroActionPerformed("1");
+                case '2' -> botonNumeroActionPerformed("2");
+                case '3' -> botonNumeroActionPerformed("3");
+                case '4' -> botonNumeroActionPerformed("4");
+                case '5' -> botonNumeroActionPerformed("5");
+                case '6' -> botonNumeroActionPerformed("6");
+                case '7' -> botonNumeroActionPerformed("7");
+                case '8' -> botonNumeroActionPerformed("8");
+                case '9' -> botonNumeroActionPerformed("9");
+                default -> {
+                }
+            }
+        }
+    }
+    private void ifOperador(char keyChar){
+        switch (keyChar) {
+            case '+' -> botonSumarActionPerformed();
+            case '-' -> botonRestarActionPerformed();
+            case '*' -> botonMultiplicarActionPerformed();
+            case '/' -> botonDividirActionPerformed();
             default -> {
             }
         }
     }
-    private void ifOperador(int keyCode){
-        if(keyCode == KeyEvent.VK_ADD){
-            botonSumarActionPerformed();
-        }else if(keyCode == KeyEvent.VK_SUBTRACT){
-            botonRestarActionPerformed();
-        }else if(keyCode == KeyEvent.VK_MULTIPLY){
-            botonMultiplicarActionPerformed();
-        }else if(keyCode == KeyEvent.VK_DIVIDE){
-            botonDividirActionPerformed();
+    private void botonAbrirParentesisActionPerformed(){
+        String textoVistaOperaciones = vistaOperaciones.getText();
+        String textoOperaciones = operaciones.getText();
+
+        if (igual) {
+            vistaOperaciones.setText(textoVistaOperaciones + "(");
+            contadorParentesis++;
+            System.out.println("1");
+        }else if(igual && textoVistaOperaciones.contains("=")){
+        vistaOperaciones.setText("(");
+        }else {
+            if (textoVistaOperaciones.isEmpty()) {
+                vistaOperaciones.setText(textoOperaciones + " x (");
+                contadorParentesis++;
+                parentesis = true;
+                operador = true;
+                System.out.println("2");
+            } else {
+                char ultimoCaracter = textoVistaOperaciones.charAt(textoVistaOperaciones.length() - 1);
+                System.out.println(ultimoCaracter);
+                if (ultimoCaracter == '(' && parentesis) {
+                    vistaOperaciones.setText(textoVistaOperaciones + "(");
+                    contadorParentesis++;
+                    System.out.println("3");
+                } else if (operador && ultimoCaracter != '(' && ultimoCaracter != ')') {
+                    vistaOperaciones.setText(textoVistaOperaciones + "(");
+                    parentesis = true;
+                    contadorParentesis++;
+                    System.out.println("4");
+                } else if (ultimoCaracter == ')'){
+                    vistaOperaciones.setText(textoVistaOperaciones + " x (");
+                    contadorParentesis++;
+                    parentesis = true;
+                    operador = true;
+                    System.out.println("5");
+                }else {
+                    vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " x (");
+                    operador = true;
+                    parentesis = true;
+                    contadorParentesis++;
+                    System.out.println("6");
+                }
+            }
         }
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+    }
+    private void botonCerrarParentesisActionPerformed(){
+        if(contadorParentesis != 0){
+            String textoVistaOperaciones = vistaOperaciones.getText();
+            if(textoVistaOperaciones.endsWith("(") || operador || textoVistaOperaciones.endsWith(" ")){
+               vistaOperaciones.setText(textoVistaOperaciones + operaciones.getText() + ")");
+               operador = false;
+            }else{
+               vistaOperaciones.setText(textoVistaOperaciones + ")");
+            }
+            contadorParentesis--;
+        }
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }
     private void botonRestarActionPerformed(){
         String textoOperaciones = operaciones.getText();
@@ -196,7 +269,9 @@ public class Cientifica extends javax.swing.JPanel {
         }else if(operador == true && textoVistaOperaciones.endsWith(" + ")){
             String nuevoTextoVistaOperaciones = textoVistaOperaciones.substring(0, textoVistaOperaciones.length() - 2) + "- ";
             vistaOperaciones.setText(nuevoTextoVistaOperaciones);
-        }  
+        }
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }
     private void botonMultiplicarActionPerformed(){
         String textoOperaciones = operaciones.getText();
@@ -224,6 +299,8 @@ public class Cientifica extends javax.swing.JPanel {
            vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " x ");
            operador = true;
         }
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }
     private void botonDividirActionPerformed(){
         String textoOperaciones = operaciones.getText();
@@ -250,10 +327,31 @@ public class Cientifica extends javax.swing.JPanel {
            vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " / ");
            operador = true;
         }
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }
-    private void boton0ActionPerformed(){
+    private void botonComaActionPerformed(){
         String testoOperaciones = operaciones.getText();
         if(testoOperaciones.length() != 40){
+            if(igual == true){
+                operaciones.setText("0" + ",");
+                vistaOperaciones.setText("");
+                igual = false;
+            }else if(!testoOperaciones.contains(",")){
+               operaciones.setText(testoOperaciones + ",");
+            }
+        }
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+    }
+    private void boton0ActionPerformed(){
+        String textoOperaciones = operaciones.getText();
+        String textoVistaOperaciones = vistaOperaciones.getText();
+        char ultimoCaracter = ' ';
+        if(!textoVistaOperaciones.isEmpty()){
+            ultimoCaracter = textoVistaOperaciones.charAt(textoVistaOperaciones.length() - 1); 
+        }
+        if(textoOperaciones.length() != 40){
             if (igual == true){
                 operaciones.setText("0");
                 vistaOperaciones.setText("");
@@ -263,8 +361,12 @@ public class Cientifica extends javax.swing.JPanel {
             }else if(operador == true){
                 operaciones.setText("0");
                 operador = false;
-            }else if (!testoOperaciones.equals("0")) {
-                operaciones.setText(testoOperaciones + "0");
+            }else if (operador != true && ultimoCaracter == ')'){
+                operaciones.setText("0");
+                vistaOperaciones.setText(textoVistaOperaciones + " x ");
+                operador = false;
+            }else if (!textoOperaciones.equals("0")) {
+                operaciones.setText(textoOperaciones + "0");
                 
             }
         }
@@ -273,6 +375,11 @@ public class Cientifica extends javax.swing.JPanel {
     }
     private void botonNumeroActionPerformed(String numero) {
     String textoOperaciones = operaciones.getText();
+    String textoVistaOperaciones = vistaOperaciones.getText();
+    char ultimoCaracter = ' ';
+    if(!textoVistaOperaciones.isEmpty()){
+        ultimoCaracter = textoVistaOperaciones.charAt(textoVistaOperaciones.length() - 1); 
+    }
     if (textoOperaciones.length() != 40) {
         if (textoOperaciones.equals("0")) {
             operaciones.setText(numero);
@@ -287,7 +394,11 @@ public class Cientifica extends javax.swing.JPanel {
         } else if (operador == true) {
             operaciones.setText(numero);
             operador = false;
-        } else {
+        }else if (operador != true && ultimoCaracter == ')'){
+                operaciones.setText(numero);
+                vistaOperaciones.setText(textoVistaOperaciones + " x ");
+                operador = false; 
+        }else {
             operaciones.setText(textoOperaciones + numero);
         }
         parentesis = false;
@@ -317,12 +428,9 @@ public class Cientifica extends javax.swing.JPanel {
            }
            String resultado = String.valueOf(controlador.calcularOperacion(operacion));
            resultado = resultado.replace(".",",");
-           System.out.println("pase2");
-        
+           
            operaciones.setText(resultado);
-           System.out.println("pase3");
            vistaOperaciones.setText(operacion + " = " + resultado);
-           System.out.println("pase4");
            list.addItem(operacion + " = " + resultado);
            numeroAnterior = resultado;
         } catch (ArithmeticException e) {
@@ -333,6 +441,8 @@ public class Cientifica extends javax.swing.JPanel {
         operador = false;
         contadorParentesis = 0;
         }
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -651,16 +761,7 @@ public class Cientifica extends javax.swing.JPanel {
     }//GEN-LAST:event_botonAnsActionPerformed
 
     private void botonComaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComaActionPerformed
-        String testoOperaciones = operaciones.getText();
-        if(testoOperaciones.length() != 40){
-            if(igual == true){
-                operaciones.setText("0" + ",");
-                vistaOperaciones.setText("");
-                igual = false;
-            }else if(!testoOperaciones.contains(",")){
-               operaciones.setText(testoOperaciones + ",");
-            }
-        }  
+        botonComaActionPerformed();  
     }//GEN-LAST:event_botonComaActionPerformed
 
     private void botonIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIgualActionPerformed
@@ -712,81 +813,15 @@ public class Cientifica extends javax.swing.JPanel {
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonEliminarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarTodoActionPerformed
-        if(operaciones.getText().equals("0")){
-            vistaOperaciones.setText("");
-            igual = true;
-            operacionBolean = false;
-            operador = false;
-            contadorParentesis = 0;
-        }else if (igual == true){
-            vistaOperaciones.setText("");
-        }
-        if(operacionBolean){
-            igualarActionPerformed();
-        }else{
-        operaciones.setText("0");
-        }
+        botonEliminarTodoActionPerformed();
     }//GEN-LAST:event_botonEliminarTodoActionPerformed
 
     private void botonAbrirParentesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirParentesisActionPerformed
-        String textoVistaOperaciones = vistaOperaciones.getText();
-String textoOperaciones = operaciones.getText();
-
-
-if (igual) {
-    vistaOperaciones.setText(textoVistaOperaciones + "(");
-    contadorParentesis++;
-    System.out.println("1");
-}else if(igual && textoVistaOperaciones.contains("=")){
-    vistaOperaciones.setText("(");
-}else {
-    if (textoVistaOperaciones.isEmpty()) {
-        vistaOperaciones.setText(textoOperaciones + " x (");
-        contadorParentesis++;
-        parentesis = true;
-        operador = true;
-        System.out.println("2");
-    } else {
-        char ultimoCaracter = textoVistaOperaciones.charAt(textoVistaOperaciones.length() - 1);
-        System.out.println(ultimoCaracter);
-        if (ultimoCaracter == '(' && parentesis) {
-            vistaOperaciones.setText(textoVistaOperaciones + "(");
-            contadorParentesis++;
-            System.out.println("3");
-        } else if (operador && ultimoCaracter != '(' && ultimoCaracter != ')') {
-            vistaOperaciones.setText(textoVistaOperaciones + "(");
-            parentesis = true;
-            contadorParentesis++;
-            System.out.println("4");
-        } else if (ultimoCaracter == ')'){
-            vistaOperaciones.setText(textoVistaOperaciones + " x (");
-            contadorParentesis++;
-            parentesis = true;
-            operador = true;
-            System.out.println("5");
-        }else {
-            vistaOperaciones.setText(textoVistaOperaciones + textoOperaciones + " x (");
-            operador = true;
-            parentesis = true;
-            contadorParentesis++;
-            System.out.println("6");
-        }
-    }
-}
-
+        botonAbrirParentesisActionPerformed();
     }//GEN-LAST:event_botonAbrirParentesisActionPerformed
 
     private void botonCerrarParentesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarParentesisActionPerformed
-        if(contadorParentesis != 0){
-            String textoVistaOperaciones = vistaOperaciones.getText();
-            if(textoVistaOperaciones.endsWith("(") || operador || textoVistaOperaciones.endsWith(" ")){
-               vistaOperaciones.setText(textoVistaOperaciones + operaciones.getText() + ")");
-               operador = false;
-            }else{
-               vistaOperaciones.setText(textoVistaOperaciones + ")");
-            }
-            contadorParentesis--;
-        }
+        botonCerrarParentesisActionPerformed();
     }//GEN-LAST:event_botonCerrarParentesisActionPerformed
 
     private void botonCambiarNegativoPositivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarNegativoPositivoActionPerformed
@@ -953,6 +988,24 @@ if (igual) {
         this.setFocusable(true);
         this.requestFocusInWindow();
     }
+    private void botonEliminarTodoActionPerformed(){
+        if(operaciones.getText().equals("0")){
+            vistaOperaciones.setText("");
+            igual = true;
+            operacionBolean = false;
+            operador = false;
+            contadorParentesis = 0;
+        }else if (igual == true){
+            vistaOperaciones.setText("");
+        }
+        if(operacionBolean){
+            igualarActionPerformed();
+        }else{
+        operaciones.setText("0");
+        }
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+    }
     private void botonSumarActionPerformed(){
         String textoOperaciones = operaciones.getText();
         String textoVistaOperaciones = vistaOperaciones.getText();
@@ -981,6 +1034,8 @@ if (igual) {
             String nuevoTextoVistaOperaciones = textoVistaOperaciones.substring(0, textoVistaOperaciones.length() - 2) + "+ ";
             vistaOperaciones.setText(nuevoTextoVistaOperaciones);
         }
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }
     private void animateScrollPane() {
         
