@@ -47,7 +47,7 @@ public class CalcularOperacion {
         }
         
         String expresionParentesis = expresion.substring(inicioParentesis + 1, finParentesis - 1);
-        double resultadoParentesis = calcular(expresionParentesis);
+        BigDecimal resultadoParentesis = calcular(expresionParentesis);
         String resultadoParentesisStr = String.valueOf(resultadoParentesis);
 
         if (esFuncion) {
@@ -76,72 +76,20 @@ public class CalcularOperacion {
     return expresion;
     }
 
-    public double calcular(String expresion) {
+    public BigDecimal calcular(String expresion) {
         expresion = expresion.replace(",", ".");
         expresion = reemplazarConstantes(expresion);
         expresion = resolverParentesis(expresion);
         System.out.println("Expresion sin parentesis: " + expresion);
         String[] tokens = expresion.split(" ");
 
-        if (tokens.length == 1) {
-            if (esFuncionTrigonometrica(tokens[0])) {
-                int indiceParentesis = tokens[0].indexOf('(');
-                String funcion = tokens[0].substring(0, indiceParentesis);
-                double angulo = Double.parseDouble(tokens[0].substring(indiceParentesis + 1, tokens[0].length() - 1));
-                double resultado = calcularFuncionTrigonometrica(funcion, angulo);
-                tokens[0] = String.valueOf(resultado);
-            }
-            if (esLogaritmo(tokens[0])) {
-                int indiceParentesis = tokens[0].indexOf('(');
-                String funcion = tokens[0].substring(0, indiceParentesis);
-                double numero = Double.parseDouble(tokens[0].substring(indiceParentesis + 1, tokens[0].length() - 1));
-                double resultado = calcularLogaritmo(funcion, numero);
-                tokens[0] = String.valueOf(resultado);
-            }
-            if (esRaiz(tokens[0])) {
-                int indiceParentesis = tokens[0].indexOf('(');
-                String funcion = tokens[0].substring(0, indiceParentesis);
-                System.out.println("funcion: " + funcion);
-                double numero = Double.parseDouble(tokens[0].substring(indiceParentesis + 1, tokens[0].length() - 1));
-                System.out.println("numero: " + numero);
-                double resultado = calcularRaiz(funcion, numero);
-                System.out.println("resultado: " + resultado);
-                tokens[0] = String.valueOf(resultado);
-            }
-            return Double.parseDouble(tokens[0]);
-        }
-
-        for (int i = 0; i < tokens.length; i++) {
-            System.out.println("Token: " + tokens[i]);
-            if (esFuncionTrigonometrica(tokens[i])) {
-                int indiceParentesis = tokens[i].indexOf('(');
-                String funcion = tokens[i].substring(0, indiceParentesis);
-                double angulo = Double.parseDouble(tokens[i].substring(indiceParentesis + 1, tokens[i].length() - 1));
-                double resultado = calcularFuncionTrigonometrica(funcion, angulo);
-                tokens[i] = String.valueOf(resultado);
-            }
-            if (esLogaritmo(tokens[i])) {
-                int indiceParentesis = tokens[i].indexOf('(');
-                String funcion = tokens[i].substring(0, indiceParentesis);
-                double numero = Double.parseDouble(tokens[i].substring(indiceParentesis + 1, tokens[i].length() - 1));
-                double resultado = calcularLogaritmo(funcion, numero);
-                tokens[i] = String.valueOf(resultado);
-            }
-            if (esRaiz(tokens[i])) {
-                int indiceParentesis = tokens[i].indexOf('(');
-                String funcion = tokens[i].substring(0, indiceParentesis);
-                double numero = Double.parseDouble(tokens[i].substring(indiceParentesis + 1, tokens[i].length() - 1));
-                double resultado = calcularRaiz(funcion, numero);
-                tokens[i] = String.valueOf(resultado);
-            }
-        }
-
-        Stack<Double> operandos = new Stack<>();
+        // Inicializar las pilas
+        Stack<BigDecimal> operandos = new Stack<>();
         Stack<String> operadores = new Stack<>();
 
         for (String token : tokens) {
             if (esNumero(token)) {
-                operandos.push(Double.parseDouble(token));
+                operandos.push(new BigDecimal(token));
             } else if (token.equals("(")) {
                 operadores.push(token);
             } else if (token.equals(")")) {
@@ -161,34 +109,35 @@ public class CalcularOperacion {
             resolverOperacion(operandos, operadores);
         }
 
-        double resultado = operandos.pop();
+        // El resultado es el último valor en la pila de operandos
+        BigDecimal resultado = operandos.pop();
         resultado = redondearResultado(resultado);
         return resultado;
     }
 
-    private void resolverOperacion(Stack<Double> operandos, Stack<String> operadores) {
-        double numero2 = operandos.pop();
-        double numero1 = operandos.pop();
+    private void resolverOperacion(Stack<BigDecimal> operandos, Stack<String> operadores) {
+        BigDecimal numero2 = operandos.pop();
+        BigDecimal numero1 = operandos.pop();
         String operador = operadores.pop();
 
         switch (operador) {
             case "+":
-                operandos.push(OperacionAlgebraica.suma(numero1, numero2));
+                operandos.push(numero1.add(numero2)); // Suma
                 break;
             case "-":
-                operandos.push(OperacionAlgebraica.resta(numero1, numero2));
+                operandos.push(numero1.subtract(numero2)); // Resta
                 break;
             case "x":
-                operandos.push(OperacionAlgebraica.multiplicacion(numero1, numero2));
+                operandos.push(numero1.multiply(numero2)); // Multiplicación
                 break;
             case "/":
-                operandos.push(OperacionAlgebraica.division(numero1, numero2));
+                operandos.push(numero1.divide(numero2, 10, RoundingMode.HALF_UP)); // División, con 10 decimales de precisión
                 break;
             case "^":
-                operandos.push(OperacionAlgebraica.potencia(numero1, numero2));
+                operandos.push(numero1.pow(numero2.intValue())); // Potencia
                 break;
             case "Mod":
-                operandos.push(OperacionAlgebraica.mod(numero1, numero2));
+                operandos.push(numero1.remainder(numero2)); // Módulo
                 break;
             default:
                 throw new IllegalArgumentException("Operador no válido: " + operador);
@@ -197,11 +146,25 @@ public class CalcularOperacion {
 
     private boolean esNumero(String cadena) {
         try {
-            Double.parseDouble(cadena);
+            new BigDecimal(cadena);
             return true;
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    private BigDecimal redondearResultado(BigDecimal resultado) {
+        // Redondear el resultado a 3 decimales
+        resultado = resultado.setScale(3, RoundingMode.HALF_UP);
+        
+        // Verificar si el resultado es un número entero
+        if (resultado.stripTrailingZeros().scale() <= 0) {
+            // Si es un entero, devolverlo sin decimales
+            return resultado.setScale(0, RoundingMode.HALF_UP);
+        }
+        
+        // Devolver el número con 3 decimales si no es entero
+        return resultado;
     }
 
     private boolean esFuncionTrigonometrica(String cadena) {

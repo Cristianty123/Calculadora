@@ -1,5 +1,8 @@
 package calculadora.controlador;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import calculadora.model.CalculadoraModel;
 import calculadora.model.operacion.reales.funcion.FuncionTrigonometrica;
 import calculadora.vista.CalculadoraVista;
@@ -18,7 +21,7 @@ public class CalculadoraControlador {
     public void cambiarModoFuncionTrigonometrica(FuncionTrigonometrica.Modo nuevoModo) {
     calculadoraModel.cambiarModoFuncionTrigonometrica(nuevoModo);
    }
-    public double calcularOperacion(String operacion){
+    public BigDecimal calcularOperacion(String operacion){
         return calculadoraModel.calcularOperacion(operacion);
     }
     public void start() {
