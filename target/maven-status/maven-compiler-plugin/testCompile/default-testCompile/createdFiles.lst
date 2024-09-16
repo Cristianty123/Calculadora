@@ -1,8 +1,1 @@
-testFuncion\TestCalculo.class
-testFuncion\TestEncontrarCorte.class
-testFuncion\TestFuncionTrigonometrica.class
-testConvercion\TestConvertir.class
-testComplex\TestOperacionCompleja.class
-testMatrix\TestOperacionMatrix.class
 testCalcularOperacion\testCalcularOperacionAlgebraica.class
-testOperacionAlgebraica\TestOperacionAlgebraica.class

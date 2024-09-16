@@ -9,12 +9,14 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
                 <configuration>
-                    <compilerArgs>
-                        <arg>--enable-preview</arg>
-                    </compilerArgs>
+                    <archive>
+                        <manifestEntries>
+                            <Main-Class>calculadora.Calculadora</Main-Class> <!-- Reemplaza con tu clase principal -->
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
@@ -26,12 +28,12 @@
         <exec.mainClass>com.mycompany.calculadora.Calculadora</exec.mainClass>
     </properties>
      <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.9.2</version>
-      <scope>test</scope>
-    </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
           <dependency>
                <groupId>org.netbeans.external</groupId>
                <artifactId>AbsoluteLayout</artifactId>
