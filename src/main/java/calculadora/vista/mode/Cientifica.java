@@ -122,11 +122,10 @@ public class Cientifica extends javax.swing.JPanel {
         });
 
         jLayeredPane1.add(jLabelBorrarTodo, JLayeredPane.PALETTE_LAYER);
-        jLabelBorrarTodo.setBounds(280, 270, 30, 30);
+        jLabelBorrarTodo.setBounds(280, 270 + 314, 30, 30);
         jLabelBorrarTodo.getAccessibleContext().setAccessibleName("");
         
         jLayeredPane1.add(historialScrollPane,JLayeredPane.DEFAULT_LAYER);
-        //inicio historialScrollPane.setBounds(0, 0, 320, 314);
         historialScrollPane.setBounds(0, 314, 320, 314);
         historialScrollPane.setViewportView(list);
         historialScrollPane.setVisible(true);
@@ -1053,9 +1052,10 @@ public class Cientifica extends javax.swing.JPanel {
                 
                 if ((deltaY > 0 && currentY < endY) || (deltaY < 0 && currentY > endY)) {
                     currentY += deltaY;
+                    jLabelBorrarTodo.setBounds(280, 270 + currentY, 30, 30);
                     historialScrollPane.setBounds(0, currentY, 320, 314);
                 } else {
-                    
+                    jLabelBorrarTodo.setBounds(280, 270 + endY, 30, 30);
                     historialScrollPane.setBounds(0, endY, 320, 314);
                     timer.stop(); 
                 }
