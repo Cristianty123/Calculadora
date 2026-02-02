@@ -39,17 +39,16 @@
                <artifactId>AbsoluteLayout</artifactId>
                <version>RELEASE210</version>
           </dependency>
-          <dependency>
-               <groupId>TimingFramework</groupId>
-               <artifactId>TimingFramework</artifactId>
-               <version>0.55</version>
-               <type>jar</type>
-          </dependency>
-          <dependency>
-               <groupId>miglayout</groupId>
-               <artifactId>miglayout</artifactId>
-               <version>4.0</version>
-               <type>jar</type>
-          </dependency>
+         <dependency>
+             <groupId>com.kenai.nbpwr</groupId>
+             <artifactId>org-jdesktop-animation-timing</artifactId>
+             <version>1.0-201002281504</version>
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+             <groupId>com.miglayout</groupId>
+             <artifactId>miglayout-swing</artifactId>
+             <version>5.3</version>
+         </dependency>
      </dependencies>
 </project>
